@@ -86,14 +86,14 @@ export default function Hero() {
                     <GraduationCap size={40} className="text-csn-yellow" />
                   </div>
                   <div className="text-white">
-                    <div className="text-sm font-bold text-csn-yellow uppercase tracking-widest">Studente 5° Anno?</div>
+                    <div className="text-sm font-bold text-csn-yellow uppercase tracking-widest">Studente del 5° anno?</div>
                     <div className="text-2xl font-black italic">Prepara il tuo futuro</div>
                   </div>
                 </div>
 
                 <div className="space-y-4">
                   {[
-                    { icon: Sparkles, text: 'Consigli dai Senior', color: 'bg-orange-500' },
+                    { icon: Sparkles, text: 'Consigli da Studenti', color: 'bg-orange-500' },
                     { icon: Users, text: 'Gruppi di Studio', color: 'bg-emerald-500' },
                     { icon: GraduationCap, text: 'Guida ai Test', color: 'bg-blue-500' }
                   ].map((item, i) => (
