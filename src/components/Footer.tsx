@@ -18,8 +18,19 @@ export default function Footer() {
             Siamo presenti in ogni dipartimento per rappresentare e orientare le nuove generazioni.
           </p>
           <div className="flex gap-4">
-            {[Instagram, Facebook, Globe, Mail].map((Icon, i) => (
-              <a key={i} href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-csn-yellow hover:border-csn-yellow transition-all duration-300">
+            {[
+              { Icon: Instagram, href: 'https://instagram.com/confed_napoli' },
+              { Icon: Facebook, href: 'https://www.facebook.com/confederazionedeglistudentinapoli/' },
+              { Icon: Globe, href: 'https://linktr.ee/confed_napoli' },
+              { Icon: Mail, href: 'mailto:confederazione.studentinapoli@gmail.com' }
+            ].map(({ Icon, href }, i) => (
+              <a 
+                key={i} 
+                href={href} 
+                target={href.startsWith('mailto') ? undefined : '_blank'}
+                rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-csn-yellow hover:text-csn-blue hover:border-csn-yellow transition-all duration-300"
+              >
                 <Icon size={20} />
               </a>
             ))}
@@ -45,8 +56,8 @@ export default function Footer() {
         <div>
           <h4 className="font-bold text-lg mb-6 text-csn-yellow">Sedi</h4>
           <ul className="space-y-4 text-blue-100">
-            <li>Dipartimento di Ingegneria</li>
-            <li>Dipartimento di Studi Umanistici</li>
+            <li>Dipartimenti di Ingegneria</li>
+            <li>Dipartimento di Giurisprudenza</li>
             <li>Dipartimento di Medicina</li>
             <li>... e molti altri</li>
           </ul>
