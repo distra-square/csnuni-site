@@ -29,7 +29,7 @@ export default function App() {
         <Hero />
         
         {/* About Section */}
-        <section id="associazioni" className="py-20 bg-white">
+        <section id="chi-siamo" className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex flex-col md:flex-row gap-12 items-center">
               <div className="md:w-1/2">
