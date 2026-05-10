@@ -29,11 +29,16 @@ export default function Footer() {
         <div>
           <h4 className="font-bold text-lg mb-6 text-csn-yellow">Link Rapidi</h4>
           <ul className="space-y-4">
-            {['Inizio', 'Aree', 'Associazioni', 'Federico II'].map(item => (
-              <li key={item}>
-                <a href="#" className="text-blue-100 hover:text-white transition-colors">{item}</a>
+            {[
+              { name: 'Inizio', href: '#inizio' },
+              { name: 'Chi siamo', href: '#chi-siamo' },
+              { name: 'Associazioni', href: '#aree' },
+              { name: 'Unisciti a noi', href: 'https://instagram.com/confed_napoli' }
+            ].map(item => (
+              <li key={item.name}>
+                <a href={item.href} className="text-blue-100 hover:text-white transition-colors">{item.name}</a>
               </li>
-            ))}
+            ))} 
           </ul>
         </div>
 
