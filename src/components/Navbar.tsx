@@ -23,19 +23,29 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-8">
-            {['Inizio', 'Aree', 'Associazioni', 'Contatti'].map((item) => (
+            {[
+              { name: 'Inizio', href: '#inizio' },
+              { name: 'Chi siamo', href: '#chi-siamo' },
+              { name: 'Associazioni', href: '#aree' },
+              { name: 'Contatti', href: '#contatti' }
+            ].map((item) => (
               <a 
-                key={item} 
-                href={`#${item.toLowerCase()}`}
+                key={item.name} 
+                href={item.href}
                 className="text-sm font-bold text-slate-600 hover:text-csn-blue transition-colors"
-                id={`nav-${item.toLowerCase()}`}
+                id={`nav-${item.name.toLowerCase().replace(' ', '-')}`}
               >
-                {item}
+                {item.name}
               </a>
             ))}
-            <button className="bg-csn-blue text-white px-6 py-2 rounded-full text-sm font-bold shadow-md hover:bg-csn-yellow hover:text-csn-blue transition-all duration-300">
+            <a 
+              href="https://instagram.com/confed_napoli"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-csn-blue text-white px-6 py-2 rounded-full text-sm font-bold shadow-md hover:bg-csn-yellow hover:text-csn-blue transition-all duration-300"
+            >
               Unisciti a noi
-            </button>
+            </a>
           </div>
 
           <button 
@@ -56,19 +66,30 @@ export default function Navbar() {
           className="absolute top-24 left-4 right-4 bg-white rounded-3xl shadow-2xl p-6 md:hidden z-50 border border-slate-100"
         >
           <div className="flex flex-col gap-4">
-            {['Inizio', 'Aree', 'Associazioni', 'Contatti'].map((item) => (
+            {[
+              { name: 'Inizio', href: '#inizio' },
+              { name: 'Chi siamo', href: '#chi-siamo' },
+              { name: 'Associazioni', href: '#aree' },
+              { name: 'Contatti', href: '#contatti' }
+            ].map((item) => (
               <a 
-                key={item} 
-                href={`#${item.toLowerCase()}`}
+                key={item.name} 
+                href={item.href}
                 className="text-lg font-bold text-slate-800 p-2 hover:text-csn-blue transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                {item}
+                {item.name}
               </a>
             ))}
-            <button className="bg-csn-blue text-white w-full py-4 rounded-2xl font-black text-lg shadow-lg">
+            <a 
+              href="https://instagram.com/confed_napoli"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-csn-blue text-white w-full py-4 rounded-2xl font-black text-lg shadow-lg text-center"
+              onClick={() => setIsOpen(false)}
+            >
               UNISCITI A NOI
-            </button>
+            </a>
           </div>
         </motion.div>
       )}
