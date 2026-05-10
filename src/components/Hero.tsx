@@ -47,7 +47,7 @@ export default function Hero() {
             <a href="#aree" className="bg-csn-blue text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-csn-blue/20 hover:scale-105 active:scale-95 transition-all outline-none">
               Inizia l'Orientamento
             </a>
-            <a href="#associazioni" className="bg-white text-csn-blue border-2 border-slate-100 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all outline-none">
+            <a href="#chi-siamo" className="bg-white text-csn-blue border-2 border-slate-100 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all outline-none">
               Chi Siamo
             </a>
           </motion.div>
