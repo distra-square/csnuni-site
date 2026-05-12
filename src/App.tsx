@@ -3,7 +3,7 @@ import Hero from './components/Hero';
 import AreaGrid from './components/AreaGrid';
 import Footer from './components/Footer';
 import { motion, useScroll, useSpring } from 'motion/react';
-import { Instagram } from 'lucide-react';
+import { Instagram, MessageCircle } from 'lucide-react';
 import studentsImage from './assets/images/regenerated_image_1778425878747.png';
 import orientationImage from './assets/images/regenerated_image_1778426150367.jpg';
 
@@ -27,6 +27,32 @@ export default function App() {
       
       <main>
         <Hero />
+        
+        {/* Quick Groups CTA */}
+        <section className="bg-csn-yellow/10 py-10 border-y border-csn-yellow/20">
+          <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 bg-csn-yellow rounded-2xl flex items-center justify-center text-csn-blue shadow-lg shadow-csn-yellow/20 animate-bounce">
+                <motion.div
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <MessageCircle size={32} fill="currentColor" />
+                </motion.div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-csn-blue">Sei una Matricola?</h3>
+                <p className="text-slate-600">Entra subito nei gruppi ufficiali delle associazioni per info e supporto.</p>
+              </div>
+            </div>
+            <a 
+              href="#aree" 
+              className="bg-csn-blue text-white px-8 py-4 rounded-2xl font-black shadow-xl shadow-csn-blue/20 hover:scale-105 transition-all text-center w-full md:w-auto"
+            >
+              TROVA IL TUO GRUPPO
+            </a>
+          </div>
+        </section>
         
         {/* About Section */}
         <section id="chi-siamo" className="py-20 bg-white">
