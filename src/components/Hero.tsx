@@ -93,8 +93,8 @@ export default function Hero() {
 
                 <div className="space-y-4">
                   {[
+                    { icon: MessageCircle, text: 'Gruppi WhatsApp Matricole', color: 'bg-emerald-500' },
                     { icon: Sparkles, text: 'Consigli da Studenti', color: 'bg-orange-500' },
-                    { icon: Users, text: 'Gruppi di Studio', color: 'bg-emerald-500' },
                     { icon: GraduationCap, text: 'Guida ai Test', color: 'bg-blue-500' }
                   ].map((item, i) => (
                     <motion.div 
