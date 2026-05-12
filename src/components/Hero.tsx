@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Sparkles, GraduationCap, Users } from 'lucide-react';
+import { Sparkles, GraduationCap, Users, MessageCircle } from 'lucide-react';
 
 export default function Hero() {
   return (
