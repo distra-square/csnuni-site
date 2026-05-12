@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { UNIVERSITY_AREAS, UniversityArea } from '../data';
-import { ArrowRight, Instagram, ExternalLink, X, Search } from 'lucide-react';
+import { ArrowRight, Instagram, ExternalLink, X, Search, MessageCircle, Send } from 'lucide-react';
 import { useState, useMemo } from 'react';
 
 export default function AreaGrid() {
@@ -36,7 +36,7 @@ export default function AreaGrid() {
           transition={{ delay: 0.1 }}
           className="text-slate-600 max-w-2xl mx-auto mb-10"
         >
-          Esplora i dipartimenti della Federico II e mettiti in contatto con le associazioni studentesche che li animano.
+          Esplora i dipartimenti della Federico II, mettiti in contatto con i rappresentanti e <b>unisciti ai gruppi WhatsApp/Telegram</b> per ricevere supporto immediato.
         </motion.p>
 
         {/* Smart Search Bar */}
@@ -88,10 +88,15 @@ export default function AreaGrid() {
               />
               
               <div 
-                className="w-12 md:w-16 h-12 md:h-16 flex items-center justify-center rounded-2xl mb-4 transition-transform duration-300 group-hover:scale-110 shadow-lg text-white"
+                className="w-12 md:w-16 h-12 md:h-16 flex items-center justify-center rounded-2xl mb-4 transition-transform duration-300 group-hover:scale-110 shadow-lg text-white relative"
                 style={{ backgroundColor: area.color }}
               >
                 <area.icon size={32} />
+                {area.associations.some(a => a.whatsapp || a.telegram) && (
+                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-csn-yellow rounded-full flex items-center justify-center text-csn-blue shadow-lg border-2 border-white animate-pulse">
+                    <MessageCircle size={12} fill="currentColor" />
+                  </div>
+                )}                
               </div>
               
               <span className="font-bold text-center text-sm md:text-lg text-slate-800 transition-colors duration-300 group-hover:text-csn-blue leading-tight px-2">
@@ -163,29 +168,49 @@ export default function AreaGrid() {
                 {selectedArea.associations.map(assoc => (
                   <div key={assoc.id} className="p-6 rounded-3xl border border-slate-100 bg-slate-50 hover:bg-white hover:border-csn-yellow hover:shadow-xl transition-all duration-300 group">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                       <div>
+                       <div className="sm:max-w-[50%]">
                          <h5 className="font-extrabold text-xl text-csn-blue group-hover:text-csn-yellow transition-colors">{assoc.name}</h5>
                          <p className="text-slate-500 text-sm mt-1">{assoc.description}</p>
                        </div>
-                       <div className="flex gap-2 w-full sm:w-auto">
+                       <div className="flex flex-wrap gap-2 w-full sm:w-auto">
+                         {assoc.whatsapp && (
+                           <a 
+                             href={assoc.whatsapp} 
+                             target="_blank" 
+                             rel="noopener noreferrer"
+                             className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-emerald-500 text-white px-4 py-3 rounded-xl text-sm font-black hover:scale-105 transition-all shadow-lg shadow-emerald-500/20"
+                           >
+                             <MessageCircle size={18} /> Gruppo WhatsApp
+                           </a>
+                         )}
+                         {assoc.telegram && (
+                           <a 
+                             href={assoc.telegram} 
+                             target="_blank" 
+                             rel="noopener noreferrer"
+                             className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-sky-500 text-white px-4 py-3 rounded-xl text-sm font-black hover:scale-105 transition-all shadow-lg shadow-sky-500/20"
+                           >
+                             <Send size={18} /> Canale Telegram
+                           </a>
+                         )}
                          {assoc.instagram && (
                            <a 
                              href={assoc.instagram} 
                              target="_blank" 
                              rel="noopener noreferrer"
-                             className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-pink-500 text-white px-4 py-2 rounded-xl text-sm font-bold hover:scale-105 transition-all shadow-md shadow-pink-500/20"
+                             className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-pink-50 text-pink-500 border border-pink-100 px-4 py-3 rounded-xl text-sm font-bold hover:bg-pink-100 transition-all"
                            >
-                             <Instagram size={16} /> @{assoc.instagram.split('/').pop()}
+                             <Instagram size={18} /> @{assoc.instagram.split('/').pop()}
                            </a>
                          )}
-                         {assoc.link && !assoc.instagram && (
+                         {assoc.link && !assoc.instagram && !assoc.whatsapp && !assoc.telegram && (
                            <a 
                              href={assoc.link} 
                              target="_blank" 
                              rel="noopener noreferrer"
-                             className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-csn-blue text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-csn-yellow hover:text-csn-blue transition-all shadow-md shadow-csn-blue/20"
+                             className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-slate-100 text-slate-600 px-4 py-3 rounded-xl text-sm font-bold hover:bg-slate-200 transition-all"
                            >
-                             <ExternalLink size={16} /> Visita
+                             <ExternalLink size={18} /> Sito
                            </a>
                          )}
                        </div>
