@@ -21,6 +21,8 @@ export interface Association {
   link: string;
   instagram?: string;
   facebook?: string;
+  whatsapp?: string;
+  telegram?: string;
 }
 
 export interface UniversityArea {
@@ -40,7 +42,7 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     color: '#2d6a4f',
     keywords: ['agricoltura', 'cibo', 'ambiente', 'terra', 'piante', 'animali', 'territorio'],
     associations: [
-      { id: 'uni-agraria', name: 'UniAgraria', description: 'Associazione di riferimento per il dipartimento di Agraria.', link: 'https://instagram.com/uni_agraria', instagram: 'https://instagram.com/uni_agraria' }
+      { id: 'uni-agraria', name: 'UniAgraria', description: 'Associazione di riferimento per il dipartimento di Agraria.', link: 'https://instagram.com/uni_agraria', instagram: 'https://instagram.com/uni_agraria', whatsapp: 'https://whatsapp.com/channel/example', telegram: 'https://t.me/example' }
     ]
   },
   {
@@ -101,7 +103,7 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     color: '#003566',
     keywords: ['meccanica', 'informatica', 'elettrica', 'elettronica', 'ambiente', 'ambientale', 'territorio', 'software', 'automazione', 'gestionale', 'civile', 'aerospaziale', 'chimica', 'materiali'],
     associations: [
-      { id: 'assingegneria', name: 'ASSI Ingegneria', description: 'Associazione di riferimento per Ingegneria e Informatica.', link: 'https://instagram.com/assingegneria', instagram: 'https://instagram.com/assingegneria' }
+      { id: 'assingegneria', name: 'ASSI Ingegneria', description: 'Associazione di riferimento per Ingegneria e Informatica.', link: 'https://instagram.com/assingegneria', instagram: 'https://instagram.com/assingegneria', whatsapp: 'https://whatsapp.com/channel/example' }
     ]
   },
   {
@@ -111,11 +113,11 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     color: '#e63946',
     keywords: ['chirurgo', 'ospedale', 'salute', 'dottore', 'clinica', 'odontoiatria', 'denti', 'infermiere', 'professioni sanitarie', 'chirurgia'],
     associations: [
-      { id: 'asmed-unina', name: 'AsMed Medicina', description: 'Medicina e Chirurgia.', link: 'https://instagram.com/asmed__unina', instagram: 'https://instagram.com/asmed__unina' },
-      { id: 'imsa-unina', name: 'IMSA Medicina (Inglese)', description: 'Medicine and Surgery (English).', link: 'https://instagram.com/imsa_unina', instagram: 'https://instagram.com/imsa_unina' },
+      { id: 'asmed-unina', name: 'AsMed Medicina', description: 'Medicina e Chirurgia.', link: 'https://instagram.com/asmed__unina', instagram: 'https://instagram.com/asmed__unina', whatsapp: 'https://whatsapp.com/channel/example', telegram: 'https://t.me/example' },
+      { id: 'imsa-unina', name: 'IMSA Medicina (Inglese)', description: 'Medicine and Surgery (English).', link: 'https://instagram.com/imsa_unina', instagram: 'https://instagram.com/imsa_unina', telegram: 'https://t.me/example' },
       { id: 'meditec-unina', name: 'Meditec (Medicina Tecnologica)', description: 'Medicina Tecnologica.', link: 'https://instagram.com/meditec_unina', instagram: 'https://instagram.com/meditec_unina' },
       { id: 'aiso-napoli', name: 'AISO Odontoiatria', description: 'Associazione Italiana Studenti Odontoiatria.', link: 'https://instagram.com/aiso_napoli_federicoii', instagram: 'https://instagram.com/aiso_napoli_federicoii' },
-      { id: 'prof-sanitarie', name: 'Professioni Sanitarie', description: 'Professioni Sanitarie.', link: 'https://instagram.com/professioni_sanitarie_unina', instagram: 'https://instagram.com/professioni_sanitarie_unina' },
+      { id: 'prof-sanitarie', name: 'Professioni Sanitarie', description: 'Professioni Sanitarie.', link: 'https://instagram.com/professioni_sanitarie_unina', instagram: 'https://instagram.com/professioni_sanitarie_unina', whatsapp: 'https://whatsapp.com/channel/example' },
       { id: 'asinf-unina', name: 'AsInf Scienze Infermieristiche', description: 'Scienze Infermieristiche.', link: 'https://instagram.com/asinf_unina', instagram: 'https://instagram.com/asinf_unina' }
     ]
   },
