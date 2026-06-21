@@ -141,7 +141,7 @@ export default function InstagramFeed() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-bold text-slate-700" > 
-                   confederazionedeglistudenti_it.
+                  <span> confederazionedeglistudenti_it</span>.
                 </a>
               </p>
             </div>
