@@ -40,6 +40,42 @@ function getInitials(name: string): string {
   return name.substring(0, 3).toUpperCase();
 }
 
+interface AssociationLogoProps {
+  logo?: string;
+  name: string;
+  color: string;
+}
+
+function AssociationLogo({ logo, name, color }: AssociationLogoProps) {
+  const [hasError, setHasError] = useState(false);
+
+  return (
+    <div 
+      className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 shadow-md relative overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:rotate-1 border-2 border-white select-none bg-slate-100"
+      style={{
+        background: logo && !hasError ? '#ffffff' : `linear-gradient(135deg, ${color}, ${color}bb)`
+      }}
+    >
+      {logo && !hasError ? (
+        <img 
+          src={logo} 
+          alt={name} 
+          className="w-full h-full object-contain p-1 relative z-10" 
+          referrerPolicy="no-referrer"
+          onError={() => setHasError(true)}
+        />
+      ) : (
+        <span className="font-extrabold font-mono text-sm tracking-tighter uppercase relative z-10 text-white">
+          {getInitials(name)}
+        </span>
+      )}
+      <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="absolute -bottom-2 -left-2 w-6 h-6 rounded-full bg-white/20 blur-sm" />
+      <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-black/10 blur-sm" />
+    </div>
+  );
+}
+
 export default function AreaGrid() {
   const [selectedArea, setSelectedArea] = useState<UniversityArea | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -207,28 +243,7 @@ export default function AreaGrid() {
                                        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 w-full">
                       <div className="flex items-center gap-4 flex-1 min-w-0">
                         {/* Association Logo Container */}
-                        <div 
-                          className="w-14 h-14 rounded-2xl flex items-center justify-center text-white shrink-0 shadow-md relative overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:rotate-1 border-2 border-white select-none"
-                          style={{
-                            background: `linear-gradient(135deg, ${selectedArea.color}, ${selectedArea.color}bb)`
-                          }}
-                        >
-                          {assoc.logo ? (
-                            <img 
-                              src={assoc.logo} 
-                              alt={assoc.name} 
-                              className="w-full h-full object-contain p-1" 
-                              referrerPolicy="no-referrer"
-                            />
-                          ) : (
-                            <span className="font-extrabold font-mono text-sm tracking-tighter uppercase relative z-10">
-                              {getInitials(assoc.name)}
-                            </span>
-                          )}
-                          <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                          <div className="absolute -bottom-2 -left-2 w-6 h-6 rounded-full bg-white/20 blur-sm" />
-                          <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-black/10 blur-sm" />
-                        </div>
+                        <AssociationLogo logo={assoc.logo} name={assoc.name} color={selectedArea.color} />
 
                         <div className="flex-1 min-w-0">
                           <h5 className="font-extrabold text-xl text-csn-blue group-hover:text-csn-yellow transition-colors truncate">
