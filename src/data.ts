@@ -32,6 +32,7 @@ export interface UniversityArea {
   color: string;
   associations: Association[];
   keywords: string[]; // Keywords for smart search
+  courses?: string[]; // List of available degree courses
 }
 
 export const UNIVERSITY_AREAS: UniversityArea[] = [
@@ -40,7 +41,25 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     name: 'Agraria',
     icon: Leaf,
     color: '#2d6a4f',
-    keywords: ['agricoltura', 'cibo', 'ambiente', 'terra', 'piante', 'animali', 'territorio'],
+    keywords: [
+      'agricoltura', 'cibo', 'ambiente', 'terra', 'piante', 'animali', 'territorio',
+      'biotecnologie agro-ambientali ed alimentari', 'scienze agrarie, forestali e ambientali',
+      'scienze e tecnologie agrarie', 'scienze e tecnologie alimentari', 'scienze enologiche',
+      'scienze forestali e ambientali', 'scienze gastronomiche mediterranee', 'sustainable food systems',
+      'tecnologie alimentari', 'viticoltura ed enologia', 'agro-ambientali', 'agrarie', 'alimentari', 'gastronomiche'
+    ],
+    courses: [
+      'Biotecnologie Agro-Ambientali ed Alimentari',
+      'Scienze Agrarie, Forestali e Ambientali',
+      'Scienze e Tecnologie Agrarie',
+      'Scienze e Tecnologie Alimentari',
+      'Scienze Enologiche',
+      'Scienze Forestali e Ambientali',
+      'Scienze Gastronomiche Mediterranee',
+      'Sustainable food systems',
+      'Tecnologie Alimentari',
+      'Viticoltura ed Enologia'
+    ],
     associations: [
       { id: 'uni-agraria', name: 'UniAgraria', description: 'Associazione di riferimento per il dipartimento di Agraria.', link: 'https://instagram.com/uni_agraria', instagram: 'https://instagram.com/uni_agraria', whatsapp: 'https://whatsapp.com/channel/example', telegram: 'https://t.me/example' }
     ]
@@ -50,7 +69,23 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     name: 'Architettura',
     icon: Building2,
     color: '#0077b6',
-    keywords: ['design', 'edifici', 'urbanistica', 'costruzioni', 'arte', 'progettazione'],
+    keywords: [
+      'design', 'edifici', 'urbanistica', 'costruzioni', 'arte', 'progettazione',
+      'architecture & heritage (archer)', 'architettura (arch5ue)', 'architettura per comunità, territori e ambiente',
+      'design for the built environment (dbe)', 'design per la comunità (co.de)',
+      'pianificazione territoriale, urbanistica e paesaggistico-ambientale (ptupa)',
+      'scienze dell\'architettura (sda)', 'urbanistica sostenibile (urbs)', 'territorio', 'paesaggio'
+    ],
+    courses: [
+      'Architecture & Heritage (ARCHER)',
+      'Architettura (ARCH5UE)',
+      'Architettura per comunità, territori e ambiente',
+      'Design For The Built Environment (DBE)',
+      'Design per la Comunità (CO.DE)',
+      'Pianificazione Territoriale, Urbanistica e Paesaggistico-Ambientale (PTUPA)',
+      'Scienze dell\'architettura (SDA)',
+      'Urbanistica Sostenibile (UrbS)'
+    ],
     associations: [
       { id: 'archetipi-unina', name: 'Archetipi', description: 'Associazione di riferimento per il dipartimento di Architettura.', link: 'https://instagram.com/archetipi.unina', instagram: 'https://instagram.com/archetipi.unina' }
     ]
@@ -60,7 +95,16 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     name: 'Biotecnologie Mediche',
     icon: Microscope,
     color: '#f9c74f',
-    keywords: ['dna', 'laboratorio', 'ricerca', 'scienza', 'cellule', 'medica'],
+    keywords: [
+      'dna', 'laboratorio', 'ricerca', 'scienza', 'cellule', 'medica',
+      'biotecnologie del farmaco', 'biotecnologie mediche', 'biotecnologie per la salute',
+      'farmaco', 'salute'
+    ],
+    courses: [
+      'Biotecnologie del Farmaco',
+      'Biotecnologie mediche',
+      'Biotecnologie per la salute'
+    ],
     associations: [
       { id: 'asbiomed-unina', name: 'AsBioMed', description: 'Associazione di riferimento per Biotecnologie Mediche.', link: 'https://instagram.com/asbiomed_unina', instagram: 'https://instagram.com/asbiomed_unina' }
     ]
@@ -70,7 +114,25 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     name: 'Economia',
     icon: TrendingUp,
     color: '#43aa8b',
-    keywords: ['finanza', 'management', 'business', 'marketing', 'soldi', 'impresa', 'aziendale'],
+    keywords: [
+      'finanza', 'management', 'business', 'marketing', 'soldi', 'impresa', 'aziendale',
+      'economia aziendale (l)', 'economia aziendale (lm)', 'economia delle imprese finanziarie (cleif)',
+      'economia e commercio (clec)', 'economia e commercio (lmec)', 'economics and finance (lmef)',
+      'finanza (lmf)', 'hospitality management', 'innovation and international management',
+      'scienze del turismo a indirizzo manageriale (stim)', 'commercio', 'turismo'
+    ],
+    courses: [
+      'Economia Aziendale (L)',
+      'Economia Aziendale (LM)',
+      'Economia delle Imprese Finanziarie (CLEIF)',
+      'Economia e Commercio (CLEC)',
+      'Economia e Commercio (LMEC)',
+      'Economics and Finance (LMEF)',
+      'Finanza (LMF)',
+      'Hospitality Management (Professionalizzante)',
+      'Innovation and International Management',
+      'Scienze del Turismo a Indirizzo Manageriale (STIM)'
+    ],
     associations: [
       { id: 'aseconomia', name: 'ASE Economia', description: 'Associazione di riferimento per Economia.', link: 'https://instagram.com/aseconomia', instagram: 'https://instagram.com/aseconomia' }
     ]
@@ -80,7 +142,21 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     name: 'Farmacia',
     icon: Pill,
     color: '#f94144',
-    keywords: ['farmaci', 'chimica', 'salute', 'laboratorio', 'erboristeria', 'preparazioni'],
+    keywords: [
+      'farmaci', 'chimica', 'salute', 'laboratorio', 'erboristeria', 'preparazioni',
+      'chimica e tecnologia farmaceutiche', 'controllo di qualità', 'farmacia',
+      'scienza e tecnologia dell’industria cosmetica', 'scienze e tecnologie erboristiche',
+      'scienze nutraceutiche', 'tossicologia chimica e ambientale', 'cosmetica', 'nutraceutica', 'tossicologia'
+    ],
+    courses: [
+      'Chimica e Tecnologia Farmaceutiche',
+      'Controllo di Qualità',
+      'Farmacia',
+      'Scienza e Tecnologia dell’Industria Cosmetica',
+      'Scienze e Tecnologie Erboristiche',
+      'Scienze Nutraceutiche',
+      'Tossicologia Chimica e Ambientale'
+    ],
     associations: [
       { id: 'aisf-unina', name: 'AISF Farmacia', description: 'Associazione di riferimento per Farmacia.', link: 'https://instagram.com/aisf_unina', instagram: 'https://instagram.com/aisf_unina' }
     ]
@@ -90,7 +166,14 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     name: 'Giurisprudenza',
     icon: Gavel,
     color: '#277da1',
-    keywords: ['legge', 'avvocato', 'diritto', 'magistrato', 'codice', 'tribunale'],
+    keywords: [
+      'legge', 'avvocato', 'diritto', 'magistrato', 'codice', 'tribunale',
+      'giurisprudenza', 'scienze dei servizi giuridici', 'servizi giuridici'
+    ],
+    courses: [
+      'Giurisprudenza',
+      'Scienze dei Servizi Giuridici'
+    ],
     associations: [
       { id: 'ius-federicoii', name: 'IUS Federico II', description: 'Associazione di riferimento per Giurisprudenza.', link: 'https://instagram.com/ius_federicoii', instagram: 'https://instagram.com/ius_federicoii' },
       { id: 'us-unina', name: 'US Unina', description: 'Associazione di riferimento per Giurisprudenza.', link: 'https://instagram.com/us.unina', instagram: 'https://instagram.com/us.unina' }
@@ -101,7 +184,55 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     name: 'Ingegneria',
     icon: Cpu,
     color: '#003566',
-    keywords: ['meccanica', 'informatica', 'elettrica', 'elettronica', 'ambiente', 'ambientale', 'territorio', 'software', 'automazione', 'gestionale', 'civile', 'aerospaziale', 'chimica', 'materiali'],
+    keywords: [
+      'meccanica', 'informatica', 'elettrica', 'elettronica', 'ambiente', 'ambientale', 'territorio', 'software', 'automazione', 'gestionale', 'civile', 'aerospaziale', 'chimica', 'materiali',
+      'autonomous vehicle engineering', 'civil and environmental engineering', 'data science',
+      'electrical engineering and information technology', 'geco - ingegneria gestionale delle costruzioni',
+      'industrial bioengineering', 'informatica', 'ingegneria aerospaziale', 'ingegneria biomedica',
+      'ingegneria chimica', 'ingegneria civile', 'ingegneria civile per l\'idraulica e i trasporti',
+      'ingegneria dei materiali', 'ingegneria dei materiali e biomateriali', 'ingegneria dell\'automazione',
+      'ingegneria dell\'automazione e robotica', 'ingegneria delle telecomunicazioni e dei media digitali',
+      'ingegneria edile - architettura', 'ingegneria edile per la sostenibilità', 'ingegneria elettrica',
+      'ingegneria elettronica', 'ingegneria gestionale', 'ingegneria informatica', 'ingegneria meccanica',
+      'ingegneria meccanica per l\'energia e l\'ambiente', 'ingegneria meccanica per la progettazione e la produzione',
+      'ingegneria navale', 'ingegneria per l\'ambiente e il territorio', 'ingegneria strutturale e geotecnica (strega)',
+      'meccatronica', 'tecnologie digitali per le costruzioni', 'transportation engineering and mobility',
+      'biomedica', 'robotica', 'telecomunicazioni', 'edile', 'navale', 'strutturale', 'geotecnica', 'trasporti'
+    ],
+    courses: [
+      'Autonomous Vehicle Engineering',
+      'Civil and Environmental Engineering',
+      'Data Science',
+      'Electrical Engineering And Information Technology',
+      'GeCo - Ingegneria Gestionale delle Costruzioni',
+      'Industrial Bioengineering',
+      'Informatica',
+      'Ingegneria Aerospaziale',
+      'Ingegneria Biomedica',
+      'Ingegneria Chimica',
+      'Ingegneria Civile',
+      'Ingegneria Civile per l\'Idraulica e i Trasporti',
+      'Ingegneria dei Materiali',
+      'Ingegneria dei Materiali e Biomateriali',
+      'Ingegneria dell\'Automazione',
+      'Ingegneria dell\'Automazione e Robotica',
+      'Ingegneria delle Telecomunicazioni e dei Media Digitali',
+      'Ingegneria Edile - Architettura',
+      'Ingegneria Edile per la Sostenibilità',
+      'Ingegneria Elettrica',
+      'Ingegneria Elettronica',
+      'Ingegneria Gestionale',
+      'Ingegneria Informatica',
+      'Ingegneria Meccanica',
+      'Ingegneria Meccanica per l\'Energia e l\'Ambiente',
+      'Ingegneria Meccanica per la Progettazione e la Produzione',
+      'Ingegneria Navale',
+      'Ingegneria per l\'Ambiente e il Territorio',
+      'Ingegneria Strutturale e Geotecnica (STReGA)',
+      'Meccatronica (Professionalizzante)',
+      'Tecnologie Digitali per le Costruzioni (Professionalizzante)',
+      'Transportation Engineering and Mobility'
+    ],
     associations: [
       { id: 'assingegneria', name: 'ASSI Ingegneria', description: 'Associazione di riferimento per Ingegneria e Informatica.', link: 'https://instagram.com/assingegneria', instagram: 'https://instagram.com/assingegneria', whatsapp: 'https://whatsapp.com/channel/example' }
     ]
@@ -111,7 +242,46 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     name: 'Medicina e Sanità Pubblica',
     icon: Stethoscope,
     color: '#e63946',
-    keywords: ['chirurgo', 'ospedale', 'salute', 'dottore', 'clinica', 'odontoiatria', 'denti', 'infermiere', 'professioni sanitarie', 'chirurgia'],
+    keywords: [
+      'chirurgo', 'ospedale', 'salute', 'dottore', 'clinica', 'odontoiatria', 'denti', 'infermiere', 'professioni sanitarie', 'chirurgia',
+      'dietistica', 'fisioterapia', 'igiene dentale', 'infermieristica', 'logopedia', 'medicina e chirurgia',
+      'medicina e chirurgia ad alta tecnologia', 'medicine and surgery', 'odontoiatria e protesi dentaria',
+      'ortottica ed assistenza oftalmologica', 'ostetricia', 'scienze della nutrizione umana',
+      'scienze delle professioni sanitarie - area tecnico assistenziale', 'scienze delle professioni sanitarie della prevenzione',
+      'scienze delle professioni sanitarie tecniche - area tecnico-diagnostica', 'scienze infermieristiche ed ostetriche',
+      'scienze riabilitative delle professioni sanitarie', 'tecniche audiometriche', 'tecniche audioprotesiche',
+      'tecniche della prevenzione nell\'ambiente e nei luoghi di lavoro', 'tecniche di fisiopatologia cardiocircolatoria e perfusione cardiovascolare',
+      'tecniche di laboratorio biomedico', 'tecniche di neurofisiopatologia', 'tecniche di radiologia medica per immagini e radioterapia',
+      'tecniche ortopediche', 'terapia occupazionale', 'nutrizione', 'riabilitazione', 'radiologia', 'ortopedia'
+    ],
+    courses: [
+      'Dietistica',
+      'Fisioterapia',
+      'Igiene Dentale',
+      'Infermieristica',
+      'Logopedia',
+      'Medicina e Chirurgia',
+      'Medicina e Chirurgia ad Alta Tecnologia',
+      'Medicine and Surgery',
+      'Odontoiatria e Protesi Dentaria',
+      'Ortottica ed Assistenza Oftalmologica',
+      'Ostetricia',
+      'Scienze della nutrizione umana',
+      'Scienze delle Professioni Sanitarie - Area Tecnico Assistenziale',
+      'Scienze delle Professioni Sanitarie della Prevenzione',
+      'Scienze delle Professioni Sanitarie Techniques - Area Tecnico-Diagnostica',
+      'Scienze Infermieristiche ed Ostetriche',
+      'Scienze Riabilitative delle Professioni Sanitarie',
+      'Tecniche Audiometriche',
+      'Tecniche Audioprotesiche',
+      'Tecniche della Prevenzione nell\'Ambiente e nei Luoghi di Lavoro',
+      'Tecniche di Fisiopatologia Cardiocircolatoria e Perfusione Cardiovascolare',
+      'Tecniche di Laboratorio biomedico',
+      'Tecniche di Neurofisiopatologia',
+      'Tecniche di Radiologia Medica per Immagini e Radioterapia',
+      'Tecniche Ortopediche',
+      'Terapia Occupazionale'
+    ],
     associations: [
       { id: 'asmed-unina', name: 'AsMed Medicina', description: 'Medicina e Chirurgia.', link: 'https://instagram.com/asmed__unina', instagram: 'https://instagram.com/asmed__unina', whatsapp: 'https://whatsapp.com/channel/example', telegram: 'https://t.me/example' },
       { id: 'imsa-unina', name: 'IMSA Medicina (Inglese)', description: 'Medicine and Surgery (English).', link: 'https://instagram.com/imsa_unina', instagram: 'https://instagram.com/imsa_unina', telegram: 'https://t.me/example' },
@@ -126,7 +296,18 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     name: 'Veterinaria',
     icon: Dog,
     color: '#588157',
-    keywords: ['animali', 'cani', 'gatti', 'chirurgia veterinaria', 'stalla', 'medicina animale'],
+    keywords: [
+      'animali', 'cani', 'gatti', 'chirurgia veterinaria', 'stalla', 'medicina animale',
+      'gestione degli animali e delle produzioni', 'medicina veterinaria', 'precision livestock farming',
+      'scienze e tecnologie delle produzioni animali', 'veterinary medicine', 'produzioni animali'
+    ],
+    courses: [
+      'Gestione degli Animali e delle Produzioni',
+      'Medicina Veterinaria',
+      'Precision Livestock Farming',
+      'Scienze e Tecnologie delle produzioni animali',
+      'Veterinary Medicine'
+    ],
     associations: [
       { id: 'medvet-unina', name: 'MedVet Veterinaria', description: 'Associazione di riferimento per Veterinaria.', link: 'https://instagram.com/medvet.unina', instagram: 'https://instagram.com/medvet.unina' }
     ]
@@ -136,7 +317,39 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     name: 'Scienze MM.FF.NN.',
     icon: FlaskConical,
     color: '#9b5de5',
-    keywords: ['biologia', 'geologia', 'matematica', 'chimica', 'fisica', 'informatica', 'scienze', 'naturali'],
+    keywords: [
+      'biologia', 'geologia', 'matematica', 'chimica', 'fisica', 'informatica', 'scienze', 'naturali',
+      'biology for one health', 'biology of extreme environments', 'biotecnologie molecolari e industriali',
+      'chimica industriale', 'geoscienze per l’ambiente, le risorse e i rischi naturali',
+      'industrial chemistry for circular and bio economy', 'marine biology and aquaculture',
+      'mathematical engineering', 'ottica e optometria', 'quantum science and engineering',
+      'scienze biologiche', 'scienze chimiche', 'scienze e tecnologie della chimica industriale',
+      'scienze geologiche', 'scienze naturali', 'scienze per la natura e per l\'ambiente', 'volcanology',
+      'ambiente', 'mare', 'ottica'
+    ],
+    courses: [
+      'Biologia',
+      'Biology for one health',
+      'Biology of extreme environments',
+      'Biotecnologie Molecolari e Industriali',
+      'Chimica',
+      'Chimica Industriale',
+      'Fisica',
+      'Geoscienze per l’Ambiente, le Risorse e i Rischi Naturali',
+      'Industrial Chemistry for Circular and Bio Economy',
+      'Marine Biology and Aquaculture',
+      'Matematica',
+      'Mathematical Engineering',
+      'Ottica e Optometria',
+      'Quantum Science and Engineering',
+      'Scienze Biologiche',
+      'Scienze Chimiche',
+      'Scienze e Tecnologie della Chimica Industriale',
+      'Scienze Geologiche',
+      'Scienze Naturali',
+      'Scienze per la natura e per l\'ambiente',
+      'Volcanology'
+    ],
     associations: [
       { id: 'biostudenti-unina', name: 'BioStudenti', description: 'Area Biologia.', link: 'https://instagram.com/biostudenti_unina', instagram: 'https://instagram.com/biostudenti_unina' },
       { id: 'asgunina', name: 'ASGU', description: 'Area Geologia.', link: 'https://instagram.com/asgunina', instagram: 'https://instagram.com/asgunina' },
@@ -149,7 +362,28 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     name: 'Scienze Politiche',
     icon: Globe2,
     color: '#f15bb5',
-    keywords: ['politica', 'relazioni internazionali', 'sociale', 'governo', 'istituzioni', 'diritto'],
+    keywords: [
+      'politica', 'relazioni internazionali', 'sociale', 'governo', 'istituzioni', 'diritto',
+      'gestione delle politiche e dei servizi sociali', 'international relations',
+      'relazioni internazionali, studi sull\'integrazione europea e per la sostenibilità',
+      'scienze criminologiche, investigative e di contrasto ai crimini informatici',
+      'scienze del servizio sociale', 'scienze dell\'amministrazione e dell\'organizzazione',
+      'scienze della pubblica amministrazione e del lavoro', 'scienze politiche',
+      'scienze statistiche per le decisioni', 'statistica e tecnologie per l\'analisi dei dati',
+      'servizi sociali', 'criminologia', 'statistica'
+    ],
+    courses: [
+      'Gestione delle Politiche e dei Servizi Sociali',
+      'International Relations',
+      'Relazioni Internazionali, studi sull\'Integrazione Europea e per la Sostenibilità',
+      'Scienze Criminologiche, Investigative e di Contrasto ai Crimini Informatici',
+      'Scienze del Servizio Sociale',
+      'Scienze dell\'Amministrazione e dell\'Organizzazione',
+      'Scienze della Pubblica Amministrazione e del Lavoro',
+      'Scienze Politiche',
+      'Scienze Statistiche per le Decisioni',
+      'Statistica e Tecnologie per l\'Analisi dei Dati'
+    ],
     associations: [
       { id: 'scienze-politiche-asu', name: 'ASU Scienze Politiche', description: 'Associazione di riferimento per Scienze Politiche.', link: 'https://instagram.com/asu.scienzepolitiche', instagram: 'https://instagram.com/asu.scienzepolitiche' }
     ]
@@ -159,7 +393,22 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     name: 'Scienze Sociali',
     icon: Users,
     color: '#00f5d4',
-    keywords: ['sociologia', 'comunicazione', 'media', 'giornalismo', 'antropologia', 'vivere comune'],
+    keywords: [
+      'sociologia', 'comunicazione', 'media', 'giornalismo', 'antropologia', 'vivere comune',
+      'comunicazione pubblica, sociale e politica', 'culture digitali e della comunicazione',
+      'digital society, social innovation and global citizenship', 'innovazione sociale',
+      'scienze antropologiche e geografiche', 'sociologia', 'sociologia digitale e analisi del web',
+      'digital', 'geografia', 'web'
+    ],
+    courses: [
+      'Comunicazione Pubblica, Sociale e Politica',
+      'Culture Digitali e della Comunicazione',
+      'Digital Society, Social Innovation and Global Citizenship',
+      'Innovazione Sociale',
+      'Scienze antropologiche e geografiche',
+      'Sociologia',
+      'Sociologia Digitale e Analisi del Web'
+    ],
     associations: [
       { id: 'csn-sociali', name: 'Confederazione Napoli', description: 'Associazione di riferimento per Scienze Sociali.', link: 'https://instagram.com/confed_napoli', instagram: 'https://instagram.com/confed_napoli' }
     ]
@@ -169,7 +418,36 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     name: 'Studi Umanistici',
     icon: BookOpen,
     color: '#f4a261',
-    keywords: ['lettere', 'filosofia', 'storia', 'archeologia', 'lingue', 'psicologia', 'cultura', 'arte'],
+    keywords: [
+      'lettere', 'filosofia', 'storia', 'archeologia', 'lingue', 'psicologia', 'cultura', 'arte',
+      'archeologia del mediterraneo', 'archeologia, storia delle arti e scienze del patrimonio culturale',
+      'coordinamento dei servizi educativi per la prima infanzia e per il disagio sociale',
+      'discipline della musica e dello spettacolo. storia e teoria.', 'filologia moderna',
+      'filologia, letterature e civiltà del mondo antico', 'philosophia', 'languages and literatures for european plurilingualism',
+      'lettere classiche', 'lettere moderne', 'lingue, culture e letterature moderne europee',
+      'management del patrimonio culturale', 'patrimonio culturale storia delle arti e museologia',
+      'psicologia clinica e degli interventi nei contesti sociali e dello sviluppo',
+      'scienze e tecniche psicologiche', 'scienze storiche', 'musica', 'spettacolo', 'lettere moderne'
+    ],
+    courses: [
+      'Archeologia del Mediterraneo',
+      'Archeologia, Storia delle Arti e Scienze del Patrimonio Culturale',
+      'Coordinamento dei Servizi Educativi per la prima Infanzia e per il Disagio Sociale',
+      'Discipline della Musica e dello Spettacolo. Storia e Teoria.',
+      'Filologia Moderna',
+      'Filologia, Letterature e Civiltà del Mondo Antico',
+      'Filosofia',
+      'Languages and Literatures for European Plurilingualism',
+      'Lettere Classiche',
+      'Lettere Moderne',
+      'Lingue, Culture e Letterature Moderne Europee',
+      'Management del Patrimonio Culturale',
+      'Patrimonio Culturale Storia delle Arti e Museologia',
+      'Psicologia Clinica e degli Interventi nei contesti Sociali e dello Sviluppo',
+      'Scienze e Tecniche Psicologiche',
+      'Scienze Storiche',
+      'Storia'
+    ],
     associations: [
       { id: 'csn-umanistici', name: 'Confederazione Napoli', description: 'Associazione di riferimento per Studi Umanistici.', link: 'https://instagram.com/confed_napoli', instagram: 'https://instagram.com/confed_napoli' }
     ]
