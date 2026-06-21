@@ -218,6 +218,29 @@ export default function AreaGrid() {
                   </div>
                 ))}
               </div>
+
+              {selectedArea.courses && selectedArea.courses.length > 0 && (
+                <div className="mt-8 pt-6 border-t border-slate-100">
+                  <div className="flex items-center gap-2 mb-4">
+                    <GraduationCap size={20} className="text-csn-blue animate-pulse" style={{ color: selectedArea.color }} />
+                    <h4 className="text-xs uppercase tracking-widest font-black text-slate-400">Corsi di Laurea Attivi ({selectedArea.courses.length})</h4>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {selectedArea.courses.map((course, idx) => (
+                      <div 
+                        key={idx} 
+                        className="flex items-start gap-2.5 bg-slate-50 p-3 rounded-2xl border border-slate-100/60 hover:bg-white hover:border-slate-200 hover:shadow-sm transition-all duration-200 group/course"
+                      >
+                        <div 
+                          className="w-2 h-2 rounded-full bg-slate-300 mt-1.5 shrink-0 group-hover/course:scale-125 transition-transform" 
+                          style={{ backgroundColor: selectedArea.color }}
+                        />
+                        <span className="text-slate-700 font-extrabold text-xs sm:text-sm leading-snug">{course}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </motion.div>
         </motion.div>
