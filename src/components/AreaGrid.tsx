@@ -1,7 +1,44 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { UNIVERSITY_AREAS, UniversityArea } from '../data';
-import { ArrowRight, Instagram, ExternalLink, X, Search, MessageCircle, Send, GraduationCap, BookOpen } from 'lucide-react';
+import { ArrowRight, Instagram, ExternalLink, X, Search, MessageCircle, Send, GraduationCap, BookOpen, Star } from 'lucide-react';
 import { useState, useMemo } from 'react';
+
+// Custom initials badge helper to create beautiful academic emblems for student associations
+function getInitials(name: string): string {
+  const lower = name.toLowerCase();
+  if (lower.includes('confederazione')) return 'CSN';
+  if (lower === 'uniagraria') return 'UAG';
+  if (lower === 'archetipi') return 'ARC';
+  if (lower === 'asbiomed') return 'ABM';
+  if (lower === 'ase economia') return 'ASE';
+  if (lower === 'aisf farmacia') return 'AISF';
+  if (lower.includes('ius federico')) return 'IUS';
+  if (lower === 'us unina') return 'US';
+  if (lower === 'assi ingegneria') return 'ASSI';
+  if (lower === 'asmed medicina') return 'AM';
+  if (lower.includes('imsa')) return 'IMSA';
+  if (lower.includes('meditec')) return 'MDT';
+  if (lower === 'aiso odontoiatria') return 'AISO';
+  if (lower === 'professioni sanitarie') return 'PS';
+  if (lower.includes('asinf')) return 'AINF';
+  if (lower.includes('medvet')) return 'MVET';
+  if (lower === 'biostudenti') return 'BIO';
+  if (lower === 'asgu') return 'ASGU';
+  if (lower === 'asmath') return 'ASM';
+  if (lower === 'aschem') return 'ASC';
+  if (lower.includes('asu scienze')) return 'ASU';
+
+  const uppercaseLetters = name.replace(/[^A-Z0-9]/g, '');
+  if (uppercaseLetters.length >= 2) {
+    return uppercaseLetters.substring(0, 4);
+  }
+  const clean = name.replace(/[^a-zA-Z0-9 ]/g, '');
+  const words = clean.split(' ').filter(Boolean);
+  if (words.length >= 2) {
+    return (words[0][0] + words[1][0]).toUpperCase();
+  }
+  return name.substring(0, 3).toUpperCase();
+}
 
 export default function AreaGrid() {
   const [selectedArea, setSelectedArea] = useState<UniversityArea | null>(null);
@@ -167,18 +204,49 @@ export default function AreaGrid() {
               <div className="space-y-4">
                 {selectedArea.associations.map(assoc => (
                   <div key={assoc.id} className="p-6 rounded-3xl border border-slate-100 bg-slate-50 hover:bg-white hover:border-csn-yellow hover:shadow-xl transition-all duration-300 group">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                       <div className="sm:max-w-[50%]">
-                         <h5 className="font-extrabold text-xl text-csn-blue group-hover:text-csn-yellow transition-colors">{assoc.name}</h5>
-                         <p className="text-slate-500 text-sm mt-1">{assoc.description}</p>
+                                       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 w-full">
+                      <div className="flex items-center gap-4 flex-1 min-w-0">
+                        {/* Association Logo Container */}
+                        <div 
+                          className="w-14 h-14 rounded-2xl flex items-center justify-center text-white shrink-0 shadow-md relative overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:rotate-1 border-2 border-white select-none"
+                          style={{
+                            background: `linear-gradient(135deg, ${selectedArea.color}, ${selectedArea.color}bb)`
+                          }}
+                        >
+                          {assoc.logo ? (
+                            <img 
+                              src={assoc.logo} 
+                              alt={assoc.name} 
+                              className="w-full h-full object-contain p-1" 
+                              referrerPolicy="no-referrer"
+                            />
+                          ) : (
+                            <span className="font-extrabold font-mono text-sm tracking-tighter uppercase relative z-10">
+                              {getInitials(assoc.name)}
+                            </span>
+                          )}
+                          <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <div className="absolute -bottom-2 -left-2 w-6 h-6 rounded-full bg-white/20 blur-sm" />
+                          <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-black/10 blur-sm" />
+                        </div>
+
+                        <div className="flex-1 min-w-0">
+                          <h5 className="font-extrabold text-xl text-csn-blue group-hover:text-csn-yellow transition-colors truncate">
+                            {assoc.name}
+                          </h5>
+                          <p className="text-slate-500 text-sm mt-1 leading-relaxed">
+                            {assoc.description}
+                          </p>
+                        </div>
                        </div>
-                       <div className="flex flex-wrap gap-2 w-full sm:w-auto">
+                       
+                        <div className="flex flex-wrap gap-2 w-full lg:w-auto shrink-0 justify-end">
                          {assoc.whatsapp && (
                            <a 
                              href={assoc.whatsapp} 
                              target="_blank" 
                              rel="noopener noreferrer"
-                             className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-emerald-500 text-white px-4 py-3 rounded-xl text-sm font-black hover:scale-105 transition-all shadow-lg shadow-emerald-500/20"
+                            className="flex-1 lg:flex-none flex items-center justify-center gap-2 bg-emerald-500 text-white px-4 py-3 rounded-xl text-sm font-black hover:scale-105 transition-all shadow-lg shadow-emerald-500/20"
                            >
                              <MessageCircle size={18} /> Gruppo WhatsApp
                            </a>
@@ -188,7 +256,7 @@ export default function AreaGrid() {
                              href={assoc.telegram} 
                              target="_blank" 
                              rel="noopener noreferrer"
-                             className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-sky-500 text-white px-4 py-3 rounded-xl text-sm font-black hover:scale-105 transition-all shadow-lg shadow-sky-500/20"
+                            className="flex-1 lg:flex-none flex items-center justify-center gap-2 bg-sky-500 text-white px-4 py-3 rounded-xl text-sm font-black hover:scale-105 transition-all shadow-lg shadow-sky-500/20"
                            >
                              <Send size={18} /> Canale Telegram
                            </a>
@@ -198,7 +266,7 @@ export default function AreaGrid() {
                              href={assoc.instagram} 
                              target="_blank" 
                              rel="noopener noreferrer"
-                             className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-pink-50 text-pink-500 border border-pink-100 px-4 py-3 rounded-xl text-sm font-bold hover:bg-pink-100 transition-all"
+                            className="flex-1 lg:flex-none flex items-center justify-center gap-1.5 bg-pink-50 text-pink-500 border border-pink-100 px-4 py-3 rounded-xl text-sm font-bold hover:bg-pink-100 transition-all"
                            >
                              <Instagram size={18} /> @{assoc.instagram.split('/').pop()}
                            </a>
@@ -208,7 +276,7 @@ export default function AreaGrid() {
                              href={assoc.link} 
                              target="_blank" 
                              rel="noopener noreferrer"
-                             className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-slate-100 text-slate-600 px-4 py-3 rounded-xl text-sm font-bold hover:bg-slate-200 transition-all"
+                            className="flex-1 lg:flex-none flex items-center justify-center gap-2 bg-slate-100 text-slate-600 px-4 py-3 rounded-xl text-sm font-bold hover:bg-slate-200 transition-all"
                            >
                              <ExternalLink size={18} /> Sito
                            </a>
