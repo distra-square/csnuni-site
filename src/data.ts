@@ -23,6 +23,7 @@ export interface Association {
   facebook?: string;
   whatsapp?: string;
   telegram?: string;
+  logo?: string;
 }
 
 export interface UniversityArea {
