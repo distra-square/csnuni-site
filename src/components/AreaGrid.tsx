@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { UNIVERSITY_AREAS, UniversityArea } from '../data';
-import { ArrowRight, Instagram, ExternalLink, X, Search, MessageCircle, Send } from 'lucide-react';
+import { ArrowRight, Instagram, ExternalLink, X, Search, MessageCircle, Send, GraduationCap, BookOpen } from 'lucide-react';
 import { useState, useMemo } from 'react';
 
 export default function AreaGrid() {
