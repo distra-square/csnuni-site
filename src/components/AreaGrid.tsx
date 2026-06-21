@@ -240,30 +240,31 @@ export default function AreaGrid() {
               <div className="space-y-4">
                 {selectedArea.associations.map(assoc => (
                   <div key={assoc.id} className="p-6 rounded-3xl border border-slate-100 bg-slate-50 hover:bg-white hover:border-csn-yellow hover:shadow-xl transition-all duration-300 group">
-                                       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 w-full">
-                      <div className="flex items-center gap-4 flex-1 min-w-0">
+                    <div className="flex flex-col gap-4 w-full">
+                      <div className="flex items-start gap-4 sm:gap-5 w-full">
                         {/* Association Logo Container */}
                         <AssociationLogo logo={assoc.logo} name={assoc.name} color={selectedArea.color} />
 
                         <div className="flex-1 min-w-0">
-                          <h5 className="font-extrabold text-xl text-csn-blue group-hover:text-csn-yellow transition-colors truncate">
+                          <h5 className="font-extrabold text-xl text-csn-blue group-hover:text-csn-yellow transition-colors leading-tight">
                             {assoc.name}
                           </h5>
-                          <p className="text-slate-500 text-sm mt-1 leading-relaxed">
+                          <p className="text-slate-500 text-sm mt-1.5 leading-relaxed">
                             {assoc.description}
                           </p>
                         </div>
                        </div>
-                       
-                        <div className="flex flex-wrap gap-2 w-full lg:w-auto shrink-0 justify-end">
-                         {assoc.whatsapp && (
-                           <a 
-                             href={assoc.whatsapp} 
-                             target="_blank" 
-                             rel="noopener noreferrer"
-                            className="flex-1 lg:flex-none flex items-center justify-center gap-2 bg-emerald-500 text-white px-4 py-3 rounded-xl text-sm font-black hover:scale-105 transition-all shadow-lg shadow-emerald-500/20"
-                           >
-                             <MessageCircle size={18} /> Gruppo WhatsApp
+                                         
+                      {(assoc.whatsapp || assoc.telegram || assoc.instagram || assoc.link) && (
+                        <div className="flex flex-wrap gap-2.5 pt-3.5 border-t border-slate-100/60 w-full justify-start sm:justify-end">
+                          {assoc.whatsapp && (
+                            <a 
+                              href={assoc.whatsapp} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-black hover:scale-[1.03] active:scale-95 transition-all shadow-md hover:shadow-lg hover:shadow-emerald-500/10"
+                            >
+                              <MessageCircle size={16} /> Gruppo WhatsApp
                            </a>
                          )}
                          {assoc.telegram && (
@@ -271,9 +272,9 @@ export default function AreaGrid() {
                              href={assoc.telegram} 
                              target="_blank" 
                              rel="noopener noreferrer"
-                            className="flex-1 lg:flex-none flex items-center justify-center gap-2 bg-sky-500 text-white px-4 py-3 rounded-xl text-sm font-black hover:scale-105 transition-all shadow-lg shadow-sky-500/20"
+                             className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-sky-500 text-white px-4 py-2.5 rounded-xl text-sm font-black hover:scale-[1.03] active:scale-95 transition-all shadow-md hover:shadow-lg hover:shadow-sky-500/10"
                            >
-                             <Send size={18} /> Canale Telegram
+                             <Send size={16} /> Canale Telegram
                            </a>
                          )}
                          {assoc.instagram && (
@@ -281,9 +282,9 @@ export default function AreaGrid() {
                              href={assoc.instagram} 
                              target="_blank" 
                              rel="noopener noreferrer"
-                            className="flex-1 lg:flex-none flex items-center justify-center gap-1.5 bg-pink-50 text-pink-500 border border-pink-100 px-4 py-3 rounded-xl text-sm font-bold hover:bg-pink-100 transition-all"
+                             className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-pink-50 text-pink-500 border border-pink-100 px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-pink-100 transition-all hover:scale-[1.03] active:scale-95"
                            >
-                             <Instagram size={18} /> @{assoc.instagram.split('/').pop()}
+                              <Instagram size={16} /> @{assoc.instagram.split('/').pop()}
                            </a>
                          )}
                          {assoc.link && !assoc.instagram && !assoc.whatsapp && !assoc.telegram && (
@@ -291,12 +292,13 @@ export default function AreaGrid() {
                              href={assoc.link} 
                              target="_blank" 
                              rel="noopener noreferrer"
-                            className="flex-1 lg:flex-none flex items-center justify-center gap-2 bg-slate-100 text-slate-600 px-4 py-3 rounded-xl text-sm font-bold hover:bg-slate-200 transition-all"
+                             className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-slate-100 text-slate-600 px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-slate-200 transition-all hover:scale-[1.03] active:scale-95"
                            >
-                             <ExternalLink size={18} /> Sito
+                            <ExternalLink size={16} /> Sito
                            </a>
                          )}
                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
