@@ -495,12 +495,10 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
         description: 'Area Biologia.', 
         link: 'https://instagram.com/biostudenti_unina', 
         instagram: 'https://instagram.com/biostudenti_unina',
+        logo: '/BIOSTUDENTI.png',
         customLinks: [
-          { 
-            label: 'Gruppo Matricole', url: 'https://t.me/matricole_biologia_unina', type: 'telegram' 
-          }
-        ]        
-          logo: '/BIOSTUDENTI.png' 
+          { label: 'Gruppo Matricole', url: 'https://t.me/matricole_biologia_unina', type: 'telegram' }
+        ]         
       },
       { 
         id: 'asgunina', 
