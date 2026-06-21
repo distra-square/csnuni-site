@@ -14,6 +14,12 @@ import {
   BookOpen 
 } from 'lucide-react';
 
+export interface AssociationLink {
+  label: string;
+  url: string;
+  type: 'whatsapp' | 'telegram' | 'link';
+}
+
 export interface Association {
   id: string;
   name: string;
@@ -24,6 +30,7 @@ export interface Association {
   whatsapp?: string;
   telegram?: string;
   logo?: string;
+  customLinks?: AssociationLink[];
 }
 
 export interface UniversityArea {
@@ -62,7 +69,15 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
       'Viticoltura ed Enologia'
     ],
     associations: [
-      { id: 'uni-agraria', name: 'UniAgraria', description: 'Associazione di riferimento per il dipartimento di Agraria.', link: 'https://instagram.com/uni_agraria', instagram: 'https://instagram.com/uni_agraria', whatsapp: 'https://whatsapp.com/channel/example', telegram: 'https://t.me/example', logo: '/UNIAGRARIA.png' }
+      { 
+        id: 'uni-agraria', 
+        name: 'UniAgraria', 
+        description: 'Associazione di riferimento per il dipartimento di Agraria.', 
+        link: 'https://instagram.com/uni_agraria', 
+        instagram: 'https://instagram.com/uni_agraria', 
+        whatsapp: 'https://chat.whatsapp.com/BlhNnJLbmmbDGESYoVEyOS?s=cl&p=i&ilr=2', 
+        logo: '/UNIAGRARIA.png' 
+      }
     ]
   },
   {
@@ -88,7 +103,15 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
       'Urbanistica Sostenibile (UrbS)'
     ],
     associations: [
-      { id: 'archetipi-unina', name: 'Archetipi', description: 'Associazione di riferimento per il dipartimento di Architettura.', link: 'https://instagram.com/archetipi.unina', instagram: 'https://instagram.com/archetipi.unina', logo: '/ARCHETIPI.png' }
+      { 
+        id: 'archetipi-unina', 
+        name: 'Archetipi', 
+        description: 'Associazione di riferimento per il dipartimento di Architettura.', 
+        link: 'https://instagram.com/archetipi.unina', 
+        instagram: 'https://instagram.com/archetipi.unina', 
+        whatsapp: 'https://chat.whatsapp.com/EuL6qNSehmx6JDMmMzQa0a?mode=gi_t', 
+        logo: '/ARCHETIPI.png' 
+      }
     ]
   },
   {
@@ -107,7 +130,14 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
       'Biotecnologie per la salute'
     ],
     associations: [
-      { id: 'asbiomed-unina', name: 'AsBioMed', description: 'Associazione di riferimento per Biotecnologie Mediche.', link: 'https://instagram.com/asbiomed_unina', instagram: 'https://instagram.com/asbiomed_unina', logo: '/ASBIOMED.png' }
+      { 
+        id: 'asbiomed-unina', 
+        name: 'AsBioMed', 
+        description: 'Associazione di riferimento per Biotecnologie Mediche.', 
+        link: 'https://instagram.com/asbiomed_unina', 
+        instagram: 'https://instagram.com/asbiomed_unina', 
+        logo: '/ASBIOMED.png' 
+      }
     ]
   },
   {
@@ -135,7 +165,17 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
       'Scienze del Turismo a Indirizzo Manageriale (STIM)'
     ],
     associations: [
-      { id: 'aseconomia', name: 'ASE Economia', description: 'Associazione di riferimento per Economia.', link: 'https://instagram.com/aseconomia', instagram: 'https://instagram.com/aseconomia', logo: '/ASE.png' }
+      { 
+        id: 'aseconomia', 
+        name: 'ASE Economia', 
+        description: 'Associazione di riferimento per Economia.', 
+        link: 'https://instagram.com/aseconomia', 
+        instagram: 'https://instagram.com/aseconomia', 
+        logo: '/ASE.png',
+        customLinks: [
+          { label: 'Gruppi Whatsapp', url: 'https://linktr.ee/confedeconomia', type: 'whatsapp' }
+        ]
+      }
     ]
   },
   {
@@ -159,7 +199,14 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
       'Tossicologia Chimica e Ambientale'
     ],
     associations: [
-      { id: 'aisf-unina', name: 'AISF Farmacia', description: 'Associazione di riferimento per Farmacia.', link: 'https://instagram.com/aisf_unina', instagram: 'https://instagram.com/aisf_unina', logo: '/AISF.png' }
+      { 
+        id: 'aisf-unina', 
+        name: 'AISF Farmacia', 
+        description: 'Associazione di riferimento per Farmacia.', 
+        link: 'https://instagram.com/aisf_unina', 
+        instagram: 'https://instagram.com/aisf_unina', 
+        logo: '/AISF.png' 
+      }
     ]
   },
   {
@@ -176,8 +223,24 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
       'Scienze dei Servizi Giuridici'
     ],
     associations: [
-      { id: 'ius-federicoii', name: 'IUS Federico II', description: 'Associazione di riferimento per Giurisprudenza.', link: 'https://instagram.com/ius_federicoii', instagram: 'https://instagram.com/ius_federicoii', logo: '/IUS.png' },
-      { id: 'us-unina', name: 'US Unina', description: 'Associazione di riferimento per Giurisprudenza.', link: 'https://instagram.com/us.unina', instagram: 'https://instagram.com/us.unina', logo: '/US.png' }
+      { 
+        id: 'ius-federicoii', 
+        name: 'IUS Federico II', 
+        description: 'Associazione di riferimento per Giurisprudenza.', 
+        link: 'https://instagram.com/ius_federicoii', 
+        instagram: 'https://instagram.com/ius_federicoii', 
+        whatsapp: 'https://chat.whatsapp.com/LG3npIB5POG18NUtBKNigr?mode=gi_t&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGntdTTWjoGew2leacVzJ1IH7aCK_fU8M1SF1Q2-cy7Y02_0UJMYRy74xnTF_k_aem_NCNAYAZykvCef-P1XxuycA', 
+        logo: '/IUS.png' 
+      },
+      { 
+        id: 'us-unina', 
+        name: 'US Unina', 
+        description: 'Associazione di riferimento per Giurisprudenza.', 
+        link: 'https://instagram.com/us.unina', 
+        instagram: 'https://instagram.com/us.unina', 
+        whatsapp: 'https://chat.whatsapp.com/JJ0YlGN5618Ew08Q8ck5Fl?s=cl&p=i&mlu=3', 
+        logo: '/US.png' 
+      }
     ]
   },
   {
@@ -235,7 +298,19 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
       'Transportation Engineering and Mobility'
     ],
     associations: [
-      { id: 'assingegneria', name: 'ASSI Ingegneria', description: 'Associazione di riferimento per Ingegneria e Informatica.', link: 'https://instagram.com/assingegneria', instagram: 'https://instagram.com/assingegneria', whatsapp: 'https://whatsapp.com/channel/example', logo: '/ASSI.png' }
+      { 
+        id: 'assingegneria', 
+        name: 'ASSI Ingegneria', 
+        description: 'Associazione di riferimento per Ingegneria ed Informatica alla Federico II.', 
+        link: 'https://assingegneria.com/', 
+        instagram: 'https://instagram.com/assingegneria', 
+        logo: '/ASSI.png',
+        customLinks: [
+          { label: 'Area Informazione', url: 'https://chat.whatsapp.com/GVHhwIlKfXqJX6gonzkfV8', type: 'whatsapp' },
+          { label: 'Area Industriale', url: 'https://chat.whatsapp.com/J0wTjiijBXO62XntQGBCu9', type: 'whatsapp' },
+          { label: 'Area Civile', url: 'https://chat.whatsapp.com/KqLhKG54haJBznEW7o5ko3', type: 'whatsapp' }
+        ]
+      }
     ]
   },
   {
@@ -284,12 +359,63 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
       'Terapia Occupazionale'
     ],
     associations: [
-      { id: 'asmed-unina', name: 'AsMed Medicina', description: 'Medicina e Chirurgia.', link: 'https://instagram.com/asmed__unina', instagram: 'https://instagram.com/asmed__unina', whatsapp: 'https://whatsapp.com/channel/example', telegram: 'https://t.me/example', logo: '/ASMED.png' },
-      { id: 'imsa-unina', name: 'IMSA Medicina (Inglese)', description: 'Medicine and Surgery (English).', link: 'https://instagram.com/imsa_unina', instagram: 'https://instagram.com/imsa_unina', telegram: 'https://t.me/example', logo: '/IMSA.png' },
-      { id: 'meditec-unina', name: 'Meditec (Medicina Tecnologica)', description: 'Medicina Tecnologica.', link: 'https://instagram.com/meditec_unina', instagram: 'https://instagram.com/meditec_unina', logo: '/MEDTECH.png' },
-      { id: 'odonto-unina', name: 'Odonto Unina', description: 'Odontoiatria.', link: 'https://www.instagram.com/odonto_unina', instagram: 'https://www.instagram.com/odonto_unina/', logo: '/ODONTO.png' },
-      { id: 'prof-sanitarie', name: 'Professioni Sanitarie', description: 'Professioni Sanitarie.', link: 'https://instagram.com/professioni_sanitarie_unina', instagram: 'https://instagram.com/professioni_sanitarie_unina', whatsapp: 'https://whatsapp.com/channel/example', logo: '/PROFESSIONI_SANITARIE.png' },
-      { id: 'asinf-unina', name: 'AsInf Scienze Infermieristiche', description: 'Scienze Infermieristiche.', link: 'https://instagram.com/asinf_unina', instagram: 'https://instagram.com/asinf_unina', logo: '/ASINF.png' }
+      { 
+        id: 'asmed-unina', 
+        name: 'AsMed Medicina', 
+        description: 'Medicina e Chirurgia.', 
+        link: 'https://instagram.com/asmed__unina', 
+        instagram: 'https://instagram.com/asmed__unina', 
+        logo: '/ASMED.png',
+        customLinks: [
+          { label: 'Semestre Filtro', url: 'https://chat.whatsapp.com/B6EsXxCMyyEJJhyvJUWQ21', type: 'whatsapp' }
+        ]
+      },
+      { 
+        id: 'imsa-unina', 
+        name: 'IMSA Medicine (English)', 
+        description: 'Medicine and Surgery (English).', 
+        link: 'https://instagram.com/imsa_unina', 
+        instagram: 'https://instagram.com/imsa_unina', 
+        logo: '/IMSA.png' 
+      },
+      { 
+        id: 'meditec-unina', 
+        name: 'Meditec (Medicina Tecnologica)', 
+        description: 'Riferimento per Medicina Tecnologica.', 
+        link: 'https://instagram.com/meditec_unina', 
+        instagram: 'https://instagram.com/meditec_unina', 
+        logo: '/MEDTECH.png',
+        customLinks: [
+          { label: 'Semestre Filtro', url: 'https://chat.whatsapp.com/B6EsXxCMyyEJJhyvJUWQ21', type: 'whatsapp' }
+        ]
+      },
+      { 
+        id: 'odonto-unina', 
+        name: 'Odonto Unina', 
+        description: 'Riferimento per Odontoiatria.', 
+        link: 'https://www.instagram.com/odonto_unina/', 
+        instagram: 'https://www.instagram.com/odonto_unina/', 
+        logo: '/ODONTO.png',
+        customLinks: [
+          { label: 'Semestre Filtro', url: 'https://chat.whatsapp.com/B6EsXxCMyyEJJhyvJUWQ21', type: 'whatsapp' }
+        ]
+      },
+      { 
+        id: 'prof-sanitarie', 
+        name: 'Professioni Sanitarie', 
+        description: 'Professioni Sanitarie.', 
+        link: 'https://instagram.com/professioni_sanitarie_unina', 
+        instagram: 'https://instagram.com/professioni_sanitarie_unina', 
+        logo: '/PROFESSIONI_SANITARIE.png' 
+      },
+      { 
+        id: 'asinf-unina', 
+        name: 'AsInf Scienze Infermieristiche', 
+        description: 'Scienze Infermieristiche.', 
+        link: 'https://instagram.com/asinf_unina', 
+        instagram: 'https://instagram.com/asinf_unina', 
+        logo: '/ASINF.png' 
+      }
     ]
   },
   {
@@ -298,7 +424,7 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     icon: Dog,
     color: '#588157',
     keywords: [
-      'animali', 'cani', 'gatti', 'chirurgia veterinaria', 'stalla', 'medicina animale',
+      'animali', 'cani', 'gatti', 'chirurgia veterinaria', 'stalla', 'medicina militare', 'medicina animale',
       'gestione degli animali e delle produzioni', 'medicina veterinaria', 'precision livestock farming',
       'scienze e tecnologie delle produzioni animali', 'veterinary medicine', 'produzioni animali'
     ],
@@ -310,7 +436,18 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
       'Veterinary Medicine'
     ],
     associations: [
-      { id: 'medvet-unina', name: 'MedVet Veterinaria', description: 'Associazione di riferimento per Veterinaria.', link: 'https://instagram.com/medvet.unina', instagram: 'https://instagram.com/medvet.unina', logo: '/MEDVET.png' }
+      { 
+        id: 'medvet-unina', 
+        name: 'MedVet Veterinaria', 
+        description: 'Associazione di riferimento per Veterinaria.', 
+        link: 'https://instagram.com/medvet.unina', 
+        instagram: 'https://instagram.com/medvet.unina', 
+        logo: '/MEDVET.png',
+        customLinks: [
+          { label: 'Semestre Filtro', url: 'https://chat.whatsapp.com/BE4dGIEGcyCJ0WZlU8ORK7?s=cl&p=a&ilr=4', type: 'whatsapp' },
+          { label: 'Gestione Animali e Produzioni', url: 'https://chat.whatsapp.com/EMuRB9kK19T6POIsABznQ3', type: 'whatsapp' }
+        ]
+      }
     ]
   },
   {
@@ -386,7 +523,20 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
       'Statistica e Tecnologie per l\'Analisi dei Dati'
     ],
     associations: [
-      { id: 'scienze-politiche-asu', name: 'ASU Scienze Politiche', description: 'Associazione di riferimento per Scienze Politiche.', link: 'https://instagram.com/asu.scienzepolitiche', instagram: 'https://instagram.com/asu.scienzepolitiche', logo: '/ASU.png' }
+      { 
+        id: 'scienze-politiche-asu', 
+        name: 'ASU Scienze Politiche', 
+        description: 'Associazione di riferimento ASU per Scienze Politiche e Sociali.', 
+        link: 'https://instagram.com/asu.scienzepolitiche', 
+        instagram: 'https://instagram.com/asu.scienzepolitiche', 
+        logo: '/ASU.png',
+        customLinks: [
+          { label: 'Scienze Politiche', url: 'https://chat.whatsapp.com/DmuZcNTPjEPFn3HRTcd7Oa?s=cl&p=a&mlu=1', type: 'whatsapp' },
+          { label: 'Servizio Sociale', url: 'https://chat.whatsapp.com/IxyGYS7cWFBArcFU6A7SEh?s=cl&p=a&mlu=1', type: 'whatsapp' },
+          { label: 'Statistica', url: 'https://chat.whatsapp.com/FOaL4QjWelF5BZk6dLxwBJ?s=cl&p=a&mlu=1', type: 'whatsapp' },
+          { label: 'Scienze dell\'Amministrazione', url: 'https://chat.whatsapp.com/JyH7gOKKkZ3ClGYpye5vem?s=cl&p=a&mlu=1', type: 'whatsapp' }
+        ]
+      }
     ]
   },
   {
@@ -445,7 +595,7 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
       'Management del Patrimonio Culturale',
       'Patrimonio Culturale Storia delle Arti e Museologia',
       'Psicologia Clinica e degli Interventi nei contesti Sociali e dello Sviluppo',
-      'Scienze e Tecniche Psicologiche',
+      'Scienze e Technique Psicologiche',
       'Scienze Storiche',
       'Storia'
     ],
