@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AreaGrid from './components/AreaGrid';
+import InstagramFeed from './components/InstagramFeed';
 import Footer from './components/Footer';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { Instagram, MessageCircle } from 'lucide-react';
@@ -112,24 +113,31 @@ export default function App() {
 
         <AreaGrid />
 
+        <InstagramFeed />
+
         {/* CTA Section */}
-        <section className="py-20 px-4">
-          <div className="max-w-5xl mx-auto bg-csn-blue rounded-[3rem] p-12 text-center relative overflow-hidden">
-            <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-6 relative z-10">
+        <section className="py-16 px-4">
+          <div className="max-w-4xl mx-auto bg-csn-blue rounded-[3rem] p-10 md:p-12 text-center relative overflow-hidden shadow-2xl shadow-csn-blue/35">
+            {/* Ambient gold/indigo graphics in margins */}
+            <div className="absolute -top-12 -left-12 w-36 h-36 bg-csn-yellow/15 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-12 -right-12 w-44 h-44 bg-blue-600/25 rounded-full blur-3xl pointer-events-none" />
+            
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 relative z-10">
               Hai ancora dei dubbi? <br />
-              <span className="text-csn-yellow italic">Parlane con noi.</span>
+              <span className="text-csn-yellow italic drop-shadow-xs">Parlane con noi.</span>
             </h2>
-            <p className="text-blue-100 text-lg mb-10 max-w-xl mx-auto relative z-10">
-              I nostri rappresentanti sono pronti a rispondere a tutte le tue domande su corsi, test e vita universitaria.
+            
+            <p className="text-blue-100 text-base md:text-lg mb-8 max-w-xl mx-auto relative z-10 font-semibold leading-relaxed">
+              I nostri rappresentanti sono pronti a rispondere a tutte le tue domande su corsi, test e vita universitaria. Scrivici direttamente su Instagram!
             </p>
+            
             <a 
               href="https://instagram.com/confed_napoli" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-4 bg-csn-yellow text-csn-blue px-10 py-5 rounded-[2rem] font-black text-xl shadow-2xl hover:scale-105 transition-all relative z-10 group"
+              className="inline-flex items-center gap-3 bg-csn-yellow text-csn-blue hover:bg-white hover:text-csn-blue px-8 py-4 rounded-2xl font-black text-md shadow-xl shadow-csn-yellow/10 hover:scale-[1.03] active:scale-95 transition-all relative z-10 group select-none"
             >
-              <Instagram size={28} className="group-hover:rotate-12 transition-transform" />
+              <Instagram size={20} className="group-hover:rotate-12 transition-transform" />
               <span>SCRIVICI @CONFED_NAPOLI</span>
             </a>
           </div>
