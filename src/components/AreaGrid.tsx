@@ -40,6 +40,14 @@ function getInitials(name: string): string {
   return name.substring(0, 3).toUpperCase();
 }
 
+// Clean helper to extract Instagram handle even with trailing slashes gracefully
+function getInstagramHandle(url: string): string {
+  if (!url) return '';
+  const clean = url.trim().replace(/\/+$/, '');
+  const lastPart = clean.split('/').pop();
+  return lastPart || '';
+}
+
 interface AssociationLogoProps {
   logo?: string;
   name: string;
@@ -60,7 +68,7 @@ function AssociationLogo({ logo, name, color }: AssociationLogoProps) {
         <img 
           src={logo} 
           alt={name} 
-          className="w-full h-full object-contain p-1 relative z-10" 
+          className="w-full h-full object-contain p-0 relative z-10 transition-transform duration-300 group-hover:scale-110" 
           referrerPolicy="no-referrer"
           onError={() => setHasError(true)}
         />
@@ -284,7 +292,7 @@ export default function AreaGrid() {
                              rel="noopener noreferrer"
                              className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-pink-50 text-pink-500 border border-pink-100 px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-pink-100 transition-all hover:scale-[1.03] active:scale-95"
                            >
-                              <Instagram size={16} /> @{assoc.instagram.split('/').pop()}
+                              <Instagram size={16} /> @{getInstagramHandle(assoc.instagram)}
                            </a>
                          )}
                          {assoc.link && !assoc.instagram && !assoc.whatsapp && !assoc.telegram && (
