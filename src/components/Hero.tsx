@@ -86,7 +86,7 @@ export default function Hero() {
                     <GraduationCap size={40} className="text-csn-yellow" />
                   </div>
                   <div className="text-white">
-                    <div className="text-sm font-bold text-csn-yellow uppercase tracking-widest">Studente del 5° anno?</div>
+                    <div className="text-sm font-bold text-csn-yellow uppercase tracking-widest">Futura matricola?</div>
                     <div className="text-2xl font-black italic">Prepara il tuo futuro</div>
                   </div>
                 </div>
