@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { UNIVERSITY_AREAS, UniversityArea } from '../data';
 import { ArrowRight, Instagram, ExternalLink, X, Search, MessageCircle, Send, GraduationCap, BookOpen, Star } from 'lucide-react';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 
 // Custom initials badge helper to create beautiful academic emblems for student associations
 function getInitials(name: string): string {
@@ -87,6 +87,18 @@ function AssociationLogo({ logo, name, color }: AssociationLogoProps) {
 export default function AreaGrid() {
   const [selectedArea, setSelectedArea] = useState<UniversityArea | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+  
+  // Blocca lo scroll della pagina principale quando la modale è aperta
+  useEffect(() => {
+    if (selectedArea) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedArea]);
 
   const filteredAreas = useMemo(() => {
     if (!searchTerm.trim()) return UNIVERSITY_AREAS;
