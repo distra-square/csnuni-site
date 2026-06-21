@@ -141,7 +141,7 @@ export default function InstagramFeed() {
                 />
               </div>
               <p className="text-slate-400">
-                Seguito da <span className="font-bold text-slate-700">rossana.cal</span>, <span className="font-bold text-slate-700">anita.lampitelli</span> e altri <span className="font-bold text-slate-700">386</span> italiani.
+                In collagborazione con <span className="font-bold text-slate-700">confederazionedeglistudenti_it</span>.
               </p>
             </div>
           </div>
