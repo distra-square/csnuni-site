@@ -489,10 +489,40 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
       'Volcanology'
     ],
     associations: [
-      { id: 'biostudenti-unina', name: 'BioStudenti', description: 'Area Biologia.', link: 'https://instagram.com/biostudenti_unina', instagram: 'https://instagram.com/biostudenti_unina', logo: '/BIOSTUDENTI.png' },
-      { id: 'asgunina', name: 'ASGU', description: 'Area Geologia.', link: 'https://instagram.com/asgunina', instagram: 'https://instagram.com/asgunina', logo: '/ASGU.png' },
-      { id: 'asmath-unina', name: 'ASMath', description: 'Area Matematica.', link: 'https://instagram.com/asmath_unina', instagram: 'https://instagram.com/asmath_unina', logo: '/ASMATH.png' },
-      { id: 'aschem-unina', name: 'ASChem', description: 'Area Scienze Chimiche.', link: 'https://instagram.com/aschem_unina', instagram: 'https://instagram.com/aschem_unina', logo: '/ASCHEM.png' }
+      { 
+        id: 'biostudenti-unina', 
+        name: 'BioStudenti', 
+        description: 'Area Biologia.', 
+        link: 'https://instagram.com/biostudenti_unina', 
+        instagram: 'https://instagram.com/biostudenti_unina',
+        telegram: 'https://t.me/matricole_biologia_unina', 
+        logo: '/BIOSTUDENTI.png' 
+      },
+      { 
+        id: 'asgunina', 
+        name: 'ASGU', 
+        description: 'Area Geologia.', 
+        link: 'https://instagram.com/asgunina', 
+        instagram: 'https://instagram.com/asgunina', 
+        logo: '/ASGU.png' 
+      },
+      { 
+        id: 'asmath-unina', 
+        name: 'ASMath', 
+        description: 'Area Matematica.', 
+        link: 'https://instagram.com/asmath_unina', 
+        instagram: 'https://instagram.com/asmath_unina',
+        whatsapp: 'https://chat.whatsapp.com/LEfMNzQgB3P8CqHOfFjHGd?s=sw&p=a&mlu=3&amv=0', 
+        logo: '/ASMATH.png' 
+      },
+      { 
+        id: 'aschem-unina', 
+        name: 'ASChem', 
+        description: 'Area Scienze Chimiche.', 
+        link: 'https://instagram.com/aschem_unina', 
+        instagram: 'https://instagram.com/aschem_unina', 
+        logo: '/ASCHEM.png' 
+      }
     ]
   },
   {
