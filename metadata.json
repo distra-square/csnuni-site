@@ -2,5 +2,7 @@
   "name": "ConfedOrienta Università",
   "description": "Il portale di orientamento della Confederazione degli Studenti della Federico II.",
   "requestFramePermissions": [],
-  "majorCapabilities": []
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
