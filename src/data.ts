@@ -287,7 +287,7 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
       { id: 'asmed-unina', name: 'AsMed Medicina', description: 'Medicina e Chirurgia.', link: 'https://instagram.com/asmed__unina', instagram: 'https://instagram.com/asmed__unina', whatsapp: 'https://whatsapp.com/channel/example', telegram: 'https://t.me/example', logo: '/ASMED.png' },
       { id: 'imsa-unina', name: 'IMSA Medicina (Inglese)', description: 'Medicine and Surgery (English).', link: 'https://instagram.com/imsa_unina', instagram: 'https://instagram.com/imsa_unina', telegram: 'https://t.me/example', logo: '/IMSA.png' },
       { id: 'meditec-unina', name: 'Meditec (Medicina Tecnologica)', description: 'Medicina Tecnologica.', link: 'https://instagram.com/meditec_unina', instagram: 'https://instagram.com/meditec_unina', logo: '/MEDTECH.png' },
-      { id: 'odonto-unina', name: 'Odonto Unina', description: 'Odontoiatria.', link: 'https://www.instagram.com/odonto_unina/', instagram: 'https://www.instagram.com/odonto_unina/', logo: '/ODONTO.png' },
+      { id: 'odonto-unina', name: 'Odonto Unina', description: 'Odontoiatria.', link: 'https://www.instagram.com/odonto_unina', instagram: 'https://www.instagram.com/odonto_unina/', logo: '/ODONTO.png' },
       { id: 'prof-sanitarie', name: 'Professioni Sanitarie', description: 'Professioni Sanitarie.', link: 'https://instagram.com/professioni_sanitarie_unina', instagram: 'https://instagram.com/professioni_sanitarie_unina', whatsapp: 'https://whatsapp.com/channel/example', logo: '/PROFESSIONI_SANITARIE.png' },
       { id: 'asinf-unina', name: 'AsInf Scienze Infermieristiche', description: 'Scienze Infermieristiche.', link: 'https://instagram.com/asinf_unina', instagram: 'https://instagram.com/asinf_unina', logo: '/ASINF.png' }
     ]
