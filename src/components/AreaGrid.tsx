@@ -18,7 +18,7 @@ function getInitials(name: string): string {
   if (lower === 'asmed medicina') return 'AM';
   if (lower.includes('imsa')) return 'IMSA';
   if (lower.includes('meditec')) return 'MDT';
-  if (lower === 'aiso odontoiatria') return 'AISO';
+  if (lower === 'odonto') return 'ODO';
   if (lower === 'professioni sanitarie') return 'PS';
   if (lower.includes('asinf')) return 'AINF';
   if (lower.includes('medvet')) return 'MVET';
