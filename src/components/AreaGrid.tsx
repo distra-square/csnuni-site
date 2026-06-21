@@ -185,7 +185,7 @@ export default function AreaGrid() {
                 style={{ backgroundColor: area.color }}
               >
                 <area.icon size={32} />
-                {area.associations.some(a => a.whatsapp || a.telegram) && (
+                {area.associations.some(a => a.whatsapp || a.telegram || (a.customLinks && a.customLinks.length > 0)) && (
                   <div className="absolute -top-2 -right-2 w-6 h-6 bg-csn-yellow rounded-full flex items-center justify-center text-csn-blue shadow-lg border-2 border-white animate-pulse">
                     <MessageCircle size={12} fill="currentColor" />
                   </div>
@@ -275,9 +275,49 @@ export default function AreaGrid() {
                         </div>
                        </div>
                                          
-                      {(assoc.whatsapp || assoc.telegram || assoc.instagram || assoc.link) && (
+                      {(assoc.whatsapp || assoc.telegram || assoc.instagram || assoc.link || (assoc.customLinks && assoc.customLinks.length > 0)) && (
                         <div className="flex flex-wrap gap-2.5 pt-3.5 border-t border-slate-100/60 w-full justify-start sm:justify-end">
-                          {assoc.whatsapp && (
+                          {assoc.customLinks && assoc.customLinks.map((customLink, cidx) => {
+                            if (customLink.type === 'whatsapp') {
+                              return (
+                                <a 
+                                  key={cidx}
+                                  href={customLink.url} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-black hover:scale-[1.03] active:scale-95 transition-all shadow-md hover:shadow-lg hover:shadow-emerald-500/10"
+                                >
+                                  <MessageCircle size={16} /> {customLink.label}
+                                </a>
+                              );
+                            }
+                            if (customLink.type === 'telegram') {
+                              return (
+                                <a 
+                                  key={cidx}
+                                  href={customLink.url} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-sky-500 text-white px-4 py-2.5 rounded-xl text-sm font-black hover:scale-[1.03] active:scale-95 transition-all shadow-md hover:shadow-lg hover:shadow-sky-500/10"
+                                >
+                                  <Send size={16} /> {customLink.label}
+                                </a>
+                              );
+                            }
+                            return (
+                              <a 
+                                key={cidx}
+                                href={customLink.url} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-slate-100 text-slate-600 px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-slate-200 transition-all hover:scale-[1.03] active:scale-95"
+                              >
+                                <ExternalLink size={16} /> {customLink.label}
+                              </a>
+                            );
+                          })}
+
+                          {!assoc.customLinks && assoc.whatsapp && (
                             <a 
                               href={assoc.whatsapp} 
                               target="_blank" 
@@ -285,39 +325,39 @@ export default function AreaGrid() {
                               className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-black hover:scale-[1.03] active:scale-95 transition-all shadow-md hover:shadow-lg hover:shadow-emerald-500/10"
                             >
                               <MessageCircle size={16} /> Gruppo WhatsApp
-                           </a>
-                         )}
-                         {assoc.telegram && (
-                           <a 
-                             href={assoc.telegram} 
-                             target="_blank" 
-                             rel="noopener noreferrer"
-                             className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-sky-500 text-white px-4 py-2.5 rounded-xl text-sm font-black hover:scale-[1.03] active:scale-95 transition-all shadow-md hover:shadow-lg hover:shadow-sky-500/10"
-                           >
-                             <Send size={16} /> Canale Telegram
-                           </a>
-                         )}
-                         {assoc.instagram && (
-                           <a 
-                             href={assoc.instagram} 
-                             target="_blank" 
-                             rel="noopener noreferrer"
-                             className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-pink-50 text-pink-500 border border-pink-100 px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-pink-100 transition-all hover:scale-[1.03] active:scale-95"
-                           >
+                            </a>
+                          )}
+                          {!assoc.customLinks && assoc.telegram && (
+                            <a 
+                              href={assoc.telegram} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-sky-500 text-white px-4 py-2.5 rounded-xl text-sm font-black hover:scale-[1.03] active:scale-95 transition-all shadow-md hover:shadow-lg hover:shadow-sky-500/10"
+                            >
+                              <Send size={16} /> Canale Telegram
+                            </a>
+                          )}
+                          {assoc.instagram && (
+                            <a 
+                              href={assoc.instagram} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-pink-50 text-pink-500 border border-pink-100 px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-pink-100 transition-all hover:scale-[1.03] active:scale-95"
+                            >
                               <Instagram size={16} /> @{getInstagramHandle(assoc.instagram)}
-                           </a>
-                         )}
-                         {assoc.link && !assoc.instagram && !assoc.whatsapp && !assoc.telegram && (
-                           <a 
-                             href={assoc.link} 
-                             target="_blank" 
-                             rel="noopener noreferrer"
-                             className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-slate-100 text-slate-600 px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-slate-200 transition-all hover:scale-[1.03] active:scale-95"
-                           >
-                            <ExternalLink size={16} /> Sito
-                           </a>
-                         )}
-                       </div>
+                            </a>
+                          )}
+                          {assoc.link && !assoc.instagram && !assoc.whatsapp && !assoc.telegram && (!assoc.customLinks || assoc.customLinks.length === 0) && (
+                            <a 
+                              href={assoc.link} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-slate-100 text-slate-600 px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-slate-200 transition-all hover:scale-[1.03] active:scale-95"
+                            >
+                              <ExternalLink size={16} /> Sito
+                            </a>
+                          )}
+                        </div>
                       )}
                     </div>
                   </div>
