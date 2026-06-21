@@ -128,13 +128,7 @@ export default function InstagramFeed() {
             <div className="flex items-center gap-2 pt-3 text-[11px] text-slate-400 select-none border-t border-slate-50 mt-3">
               <div className="flex -space-x-1.5 shrink-0">
                 <img 
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=40" 
-                  alt="avatar" 
-                  className="w-5 h-5 rounded-full border border-white"
-                  referrerPolicy="no-referrer"
-                />
-                <img 
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=40" 
+                  src="https://instagram.fnap3-1.fna.fbcdn.net/v/t51.82787-19/611249600_18068151905425876_7740865634147447145_n.jpg?stp=dst-jpg_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fnap3-1.fna.fbcdn.net&_nc_cat=104&_nc_oc=Q6cZ2gGz__zDIghrAJzA3M1NHnbRC7Dm2hztNLXHCotWUlBEVnrlbY-pSeziI0D_C1O9uAM&_nc_ohc=Th4uV28y-1sQ7kNvwFv3D0X&_nc_gid=RRXW5IJuHePCVTHf0pJsIw&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_Af95dhaeAVocy0mgTvSiXoYlqKk9r3hwOv7Tokwulegdtg&oe=6A3E3E54&_nc_sid=7a9f4b" 
                   alt="avatar" 
                   className="w-5 h-5 rounded-full border border-white"
                   referrerPolicy="no-referrer"
