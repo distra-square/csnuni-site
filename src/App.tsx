@@ -27,12 +27,12 @@ export default function App() {
       
       <main>
         <Hero />
-        
+
         {/* Quick Groups CTA */}
-        <section className="bg-csn-yellow/10 py-10 border-y border-csn-yellow/20">
-          <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-csn-yellow rounded-2xl flex items-center justify-center text-csn-blue shadow-lg shadow-csn-yellow/20 animate-bounce">
+        <section className="py-8 px-4 max-w-7xl mx-auto">
+          <div className="bg-csn-yellow/10 border-2 border-csn-yellow/20 rounded-[2.5rem] p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
+              <div className="w-16 h-16 bg-csn-yellow rounded-2xl flex items-center justify-center text-csn-blue shadow-lg shadow-csn-yellow/25 shrink-0">
                 <motion.div
                   animate={{ rotate: [0, 10, -10, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
@@ -41,13 +41,13 @@ export default function App() {
                 </motion.div>
               </div>
               <div>
-                <h3 className="text-xl font-bold text-csn-blue">Sei una Matricola?</h3>
-                <p className="text-slate-600">Entra subito nei gruppi ufficiali delle associazioni per info e supporto.</p>
+                <h3 className="text-xl md:text-2xl font-black text-csn-blue">Sei una futura Matricola?</h3>
+                <p className="text-slate-600 font-medium mt-1">Entra subito nei gruppi ufficiali delle associazioni per info e supporto.</p>
               </div>
             </div>
             <a 
               href="#aree" 
-              className="bg-csn-blue text-white px-8 py-4 rounded-2xl font-black shadow-xl shadow-csn-blue/20 hover:scale-105 transition-all text-center w-full md:w-auto"
+              className="bg-csn-blue text-white px-8 py-4 rounded-2xl font-black shadow-xl shadow-csn-blue/20 hover:scale-[1.03] active:scale-95 transition-all text-center w-full md:w-auto shrink-0 select-none"
             >
               TROVA IL TUO GRUPPO
             </a>
