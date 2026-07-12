@@ -85,7 +85,7 @@ export default function App() {
                   della Federico II.
                 </h2>
                 <p className="text-slate-600 text-lg leading-relaxed mb-8">
-                  La Confederazione degli Studenti Napoli non è solo un'associazione, è un progetto collettivo. 
+                  Confederazione degli Studenti Napoli è un progetto collettivo che parte da studenti proprio come te. 
                   Siamo presenti in quasi tutti i dipartimenti della Federico II per garantire che ogni studente 
                   abbia una voce e un punto di riferimento sicuro, fin dal primo giorno.
                 </p>
