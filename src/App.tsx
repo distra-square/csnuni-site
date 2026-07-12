@@ -81,8 +81,8 @@ export default function App() {
               <div className="md:w-1/2">
                 <h2 className="text-3xl md:text-5xl font-black text-csn-blue mb-6 leading-tight">
                   Siamo la più grande <br /> 
-                  <span className="text-csn-yellow italic">rete di studenti</span> <br />
-                  a Napoli.
+                  <span className="text-csn-yellow italic">associazione di studenti</span> <br />
+                  della Federico II.
                 </h2>
                 <p className="text-slate-600 text-lg leading-relaxed mb-8">
                   La Confederazione degli Studenti Napoli non è solo un'associazione, è un progetto collettivo. 
