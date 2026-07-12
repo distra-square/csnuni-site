@@ -135,7 +135,8 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
         name: 'AsBioMed', 
         description: 'Associazione di riferimento per Biotecnologie Mediche.', 
         link: 'https://instagram.com/asbiomed_unina', 
-        instagram: 'https://instagram.com/asbiomed_unina', 
+        instagram: 'https://instagram.com/asbiomed_unina',
+        whatsapp: 'https://chat.whatsapp.com/HJhv4RIEfQ93cI2tlKh22d', 
         logo: '/ASBIOMED.png' 
       }
     ]
@@ -237,7 +238,7 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
         name: 'US Unina', 
         description: 'Associazione di riferimento per Giurisprudenza.', 
         link: 'https://instagram.com/us.unina', 
-        instagram: 'https://instagram.com/us.unina', 
+        instagram: 'https://instagram.com/usuninagiurisprudenza', 
         whatsapp: 'https://chat.whatsapp.com/JJ0YlGN5618Ew08Q8ck5Fl?s=cl&p=i&mlu=3', 
         logo: '/US.png' 
       }
