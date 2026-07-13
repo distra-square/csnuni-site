@@ -238,7 +238,7 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
         name: 'US Unina', 
         description: 'Associazione di riferimento per Giurisprudenza.', 
         link: 'https://instagram.com/us.unina', 
-        instagram: 'https://instagram.com/usuninagiurisprudenza', 
+        instagram: 'https://instagram.com/us.unina', 
         whatsapp: 'https://chat.whatsapp.com/JJ0YlGN5618Ew08Q8ck5Fl?s=cl&p=i&mlu=3', 
         logo: '/US.png' 
       }
