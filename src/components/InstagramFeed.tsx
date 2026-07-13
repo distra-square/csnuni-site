@@ -135,7 +135,7 @@ export default function InstagramFeed() {
                 />
               </div>
               <p className="text-slate-400">
-                In collagborazione con
+                In collaborazione con
                 <a 
                   href="https://instagram.com/confederazionedeglistudenti_it"
                   target="_blank"
