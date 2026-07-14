@@ -364,8 +364,8 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
         id: 'asmed-unina', 
         name: 'AsMed Medicina', 
         description: 'Medicina e Chirurgia.', 
-        link: 'https://instagram.com/asmed__unina', 
-        instagram: 'https://instagram.com/asmed__unina', 
+        link: 'https://instagram.com/asmed_unina', 
+        instagram: 'https://instagram.com/asmed_unina', 
         logo: '/ASMED.png',
         customLinks: [
           { label: 'Semestre Filtro', url: 'https://chat.whatsapp.com/B6EsXxCMyyEJJhyvJUWQ21', type: 'whatsapp' }
@@ -381,13 +381,15 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
       },
       { 
         id: 'meditec-unina', 
-        name: 'Meditec (Medicina Tecnologica)', 
-        description: 'Riferimento per Medicina Tecnologica.', 
+        name: 'MediTec (Medicina Tecnologica)', 
+        description: 'Riferimento per Medicina e Chirurgia ad Alta Tecnologia (sedi di Napoli e Benevento)', 
         link: 'https://instagram.com/meditec_unina', 
         instagram: 'https://instagram.com/meditec_unina', 
         logo: '/MEDTECH.png',
         customLinks: [
-          { label: 'Semestre Filtro', url: 'https://chat.whatsapp.com/B6EsXxCMyyEJJhyvJUWQ21', type: 'whatsapp' }
+          { label: 'Semestre Filtro - Sede Napoli', url: 'https://chat.whatsapp.com/KpsCfxwegRj1hefvTiMzoZ?s=sw&p=i&ilr=1', type: 'whatsapp' },
+          { label: 'Semestre Filtro - Sede Benevento', url: 'https://chat.whatsapp.com/C8up6U710CX6m4vaAcNtZX?s=sw&p=i&ilr=1', type: 'whatsapp' }
+
         ]
       },
       { 
@@ -524,7 +526,11 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
         description: 'Area Scienze Chimiche.', 
         link: 'https://instagram.com/aschem_unina', 
         instagram: 'https://instagram.com/aschem_unina', 
-        logo: '/ASCHEM.png' 
+        logo: '/ASCHEM.png',
+        customLinks: [
+          { label: 'Chimica', url: 'https://chat.whatsapp.com/JgHmK4yylAn8C2W2sEsoTl', type: 'whatsapp' },
+          { label: 'Chimica Industriale', url: 'https://chat.whatsapp.com/JmERIKqF8HT0Kcyyvwl1AP', type: 'whatsapp' },
+          { label: 'Biotecnologie Industriali', url: 'https://chat.whatsapp.com/FhapomMlkTZ0N08Mj46wgS', type: 'whatsapp' }
       }
     ]
   },
