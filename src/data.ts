@@ -408,7 +408,10 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
         description: 'Professioni Sanitarie.', 
         link: 'https://instagram.com/professioni_sanitarie_unina', 
         instagram: 'https://instagram.com/professioni_sanitarie_unina', 
-        logo: '/PROFESSIONI_SANITARIE.png' 
+        logo: '/PROFESSIONI_SANITARIE.png',
+        customLinks: [
+          { label: 'Gruppo Whatsapp', url: 'https://chat.whatsapp.com/KjkAqKhHPArKTn2lTBvFp9', type: 'whatsapp' }
+        ]
       },
       { 
         id: 'asinf-unina', 
