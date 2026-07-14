@@ -154,16 +154,16 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
       'scienze del turismo a indirizzo manageriale (stim)', 'commercio', 'turismo'
     ],
     courses: [
-      'Economia Aziendale (L)',
-      'Economia Aziendale (LM)',
-      'Economia delle Imprese Finanziarie (CLEIF)',
-      'Economia e Commercio (CLEC)',
-      'Economia e Commercio (LMEC)',
-      'Economics and Finance (LMEF)',
-      'Finanza (LMF)',
-      'Hospitality Management (Professionalizzante)',
-      'Innovation and International Management',
-      'Scienze del Turismo a Indirizzo Manageriale (STIM)'
+      'Economia Aziendale (LT CLEA)',
+      'Economia Aziendale (LM EA)',
+      'Economia delle Imprese Finanziarie (LT CLEIF)',
+      'Economia e Commercio (LT CLEC)',
+      'Economia e Commercio (LM EC)',
+      'Economics and Finance (LM EF)',
+      'Finanza (LM F)',
+      'Hospitality Management (LT HM)',
+      'Innovation and International Management (LM IIM)',
+      'Scienze del Turismo a Indirizzo Manageriale (LT STIM)'
     ],
     associations: [
       { 
