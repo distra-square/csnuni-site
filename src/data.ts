@@ -389,7 +389,6 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
         customLinks: [
           { label: 'Semestre Filtro - Sede Napoli', url: 'https://chat.whatsapp.com/KpsCfxwegRj1hefvTiMzoZ?s=sw&p=i&ilr=1', type: 'whatsapp' },
           { label: 'Semestre Filtro - Sede Benevento', url: 'https://chat.whatsapp.com/C8up6U710CX6m4vaAcNtZX?s=sw&p=i&ilr=1', type: 'whatsapp' }
-
         ]
       },
       { 
@@ -533,7 +532,8 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
           { label: 'Biotecnologie Industriali', url: 'https://chat.whatsapp.com/FhapomMlkTZ0N08Mj46wgS', type: 'whatsapp' }
         ]
       }
-      ],
+    ]
+  },
   {
     id: 'scienze-politiche',
     name: 'Scienze Politiche',
