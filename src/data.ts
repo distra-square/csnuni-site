@@ -225,15 +225,6 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     ],
     associations: [
       { 
-        id: 'ius-federicoii', 
-        name: 'IUS Federico II', 
-        description: 'Associazione di riferimento per Giurisprudenza.', 
-        link: 'https://instagram.com/ius_federicoii', 
-        instagram: 'https://instagram.com/ius_federicoii', 
-        whatsapp: 'https://chat.whatsapp.com/LG3npIB5POG18NUtBKNigr?mode=gi_t&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGntdTTWjoGew2leacVzJ1IH7aCK_fU8M1SF1Q2-cy7Y02_0UJMYRy74xnTF_k_aem_NCNAYAZykvCef-P1XxuycA', 
-        logo: '/IUS.png' 
-      },
-      { 
         id: 'us-unina', 
         name: 'US Unina', 
         description: 'Associazione di riferimento per Giurisprudenza.', 
@@ -241,6 +232,15 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
         instagram: 'https://instagram.com/us.unina', 
         whatsapp: 'https://chat.whatsapp.com/JJ0YlGN5618Ew08Q8ck5Fl?s=cl&p=i&mlu=3', 
         logo: '/US.png' 
+      },
+      { 
+        id: 'ius-federicoii', 
+        name: 'IUS Federico II', 
+        description: 'Associazione di riferimento per Giurisprudenza.', 
+        link: 'https://instagram.com/ius_federicoii', 
+        instagram: 'https://instagram.com/ius_federicoii', 
+        whatsapp: 'https://chat.whatsapp.com/LG3npIB5POG18NUtBKNigr?mode=gi_t&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGntdTTWjoGew2leacVzJ1IH7aCK_fU8M1SF1Q2-cy7Y02_0UJMYRy74xnTF_k_aem_NCNAYAZykvCef-P1XxuycA', 
+        logo: '/IUS.png' 
       }
     ]
   },
@@ -564,10 +564,10 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
         instagram: 'https://instagram.com/asu.scienzepolitiche', 
         logo: '/ASU.png',
         customLinks: [
-          { label: 'Scienze Politiche', url: 'https://chat.whatsapp.com/DmuZcNTPjEPFn3HRTcd7Oa?s=cl&p=a&mlu=1', type: 'whatsapp' },
-          { label: 'Servizio Sociale', url: 'https://chat.whatsapp.com/IxyGYS7cWFBArcFU6A7SEh?s=cl&p=a&mlu=1', type: 'whatsapp' },
-          { label: 'Statistica', url: 'https://chat.whatsapp.com/FOaL4QjWelF5BZk6dLxwBJ?s=cl&p=a&mlu=1', type: 'whatsapp' },
-          { label: 'Scienze dell\'Amministrazione', url: 'https://chat.whatsapp.com/JyH7gOKKkZ3ClGYpye5vem?s=cl&p=a&mlu=1', type: 'whatsapp' }
+          { label: 'Scienze Politiche', url: 'https://chat.whatsapp.com/HnSC1TPECCMIhptzyOWnF1?s=sw&p=a&ilr=4', type: 'whatsapp' },
+          { label: 'Servizio Sociale', url: 'https://chat.whatsapp.com/BulFskSx7JEBOmWvVLGwhf?s=sw&p=a&ilr=4', type: 'whatsapp' },
+          { label: 'Statistica', url: 'https://chat.whatsapp.com/G2Kz7MDD26TIUi5EmPwYj2?s=sw&p=a&ilr=4', type: 'whatsapp' },
+          { label: 'Scienze dell\'Amministrazione', url: 'https://chat.whatsapp.com/Lia59cjTJ6V42nXGVhtx8W?s=sw&p=a&ilr=4', type: 'whatsapp' }
         ]
       }
     ]
