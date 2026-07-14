@@ -163,7 +163,7 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
       'Finanza (LM F)',
       'Hospitality Management (LT HM)',
       'Innovation and International Management (LM IIM)',
-      'Scienze del Turismo a Indirizzo Manageriale (LT STIM)'
+      'Scienze del Turismo ad Indirizzo Manageriale (LT STIM)'
     ],
     associations: [
       { 
@@ -376,7 +376,8 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
         name: 'IMSA Medicine (English)', 
         description: 'Medicine and Surgery (English).', 
         link: 'https://instagram.com/imsa_unina', 
-        instagram: 'https://instagram.com/imsa_unina', 
+        instagram: 'https://instagram.com/imsa_unina',
+        whatsapp: 'https://chat.whatsapp.com/Gngu7MHj4qF4ReXX1BJHBU?s=sw&p=i&ilr=1&amv=0', 
         logo: '/IMSA.png' 
       },
       { 
