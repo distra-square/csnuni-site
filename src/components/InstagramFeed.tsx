@@ -91,7 +91,7 @@ export default function InstagramFeed() {
               <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Post</div>
             </div>
             <div>
-              <div className="font-black text-slate-800 text-base sm:text-lg">28.3K</div>
+              <div className="font-black text-slate-800 text-base sm:text-lg">28.5K</div>
               <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Follower</div>
             </div>
             <div>
