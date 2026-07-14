@@ -641,5 +641,4 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
       { id: 'csn-umanistici', name: 'Confederazione Napoli', description: 'Associazione di riferimento per Studi Umanistici.', link: 'https://instagram.com/confed_napoli', instagram: 'https://instagram.com/confed_napoli', logo: '/logo.png' }
     ]
   }
-]
-}
+];
