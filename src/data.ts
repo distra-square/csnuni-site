@@ -531,9 +531,8 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
           { label: 'Chimica', url: 'https://chat.whatsapp.com/JgHmK4yylAn8C2W2sEsoTl', type: 'whatsapp' },
           { label: 'Chimica Industriale', url: 'https://chat.whatsapp.com/JmERIKqF8HT0Kcyyvwl1AP', type: 'whatsapp' },
           { label: 'Biotecnologie Industriali', url: 'https://chat.whatsapp.com/FhapomMlkTZ0N08Mj46wgS', type: 'whatsapp' }
-      }
-    ]
-  },
+        ]
+      },
   {
     id: 'scienze-politiche',
     name: 'Scienze Politiche',
