@@ -420,7 +420,10 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
         description: 'Scienze Infermieristiche.', 
         link: 'https://instagram.com/asinf_unina', 
         instagram: 'https://instagram.com/asinf_unina', 
-        logo: '/ASINF.png' 
+        logo: '/ASINF.png',
+     customLinks: [
+          { label: 'Community WhatsApp', url: 'https://chat.whatsapp.com/Ij8GtT2o1sjId69KBx3PAZ', type: 'whatsapp' }
+        ] 
       }
     ]
   },
