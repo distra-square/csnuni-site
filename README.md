@@ -1,20 +1,10 @@
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+  <img width="2700" height="1069" alt="ConfedOrienta Banner" src="https://github.com/user-attachments/assets/7829104b-a9af-42cc-9877-1a8d2e9c2322" />
+
+  <h1>🎓 ConfedOrienta</h1>
+  <p><em>Il portale di orientamento e supporto per gli studenti della Federico II, a cura della Confederazione degli Studenti Napoli.</em></p>
+
+  <a href="https://confedorienta.vercel.app"><strong>🌍 Visita il sito</strong></a>
 </div>
 
-# Run and deploy your AI Studio app
-
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/42797a7b-0595-4fb7-8a12-8438abf87cc9
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+<br />
