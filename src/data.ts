@@ -514,7 +514,11 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
         name: 'ASGU', 
         description: 'Area Geologia.', 
         link: 'https://instagram.com/asgunina', 
-        instagram: 'https://instagram.com/asgunina', 
+        instagram: 'https://instagram.com/asgunina',
+customLinks: [
+          { label: 'Scienze Geologiche', url: 'https://chat.whatsapp.com/EBp58bHafTyHPYRvpM4iPJ?s=cl&p=a&ilr=1', type: 'whatsapp' },
+          { label: 'Gruppi Magistrali', url: 'https://chat.whatsapp.com/EoLZAv06q8WKHGursJG8xl?s=cl&p=a&ilr=1', type: 'whatsapp' }
+        ], 
         logo: '/ASGU.png' 
       },
       { 
