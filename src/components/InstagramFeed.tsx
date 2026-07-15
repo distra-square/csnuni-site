@@ -87,11 +87,11 @@ export default function InstagramFeed() {
           {/* Real Metrics Stats */}
           <div className="grid grid-cols-3 gap-2 py-4 border-y border-slate-100 my-6 text-center select-none bg-slate-50/50 rounded-2xl">
             <div>
-              <div className="font-black text-slate-800 text-base sm:text-lg">415</div>
+              <div className="font-black text-slate-800 text-base sm:text-lg">418</div>
               <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Post</div>
             </div>
             <div>
-              <div className="font-black text-slate-800 text-base sm:text-lg">28.5K</div>
+              <div className="font-black text-slate-800 text-base sm:text-lg">28.6K</div>
               <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Follower</div>
             </div>
             <div>
