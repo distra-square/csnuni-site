@@ -121,11 +121,10 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     color: '#f9c74f',
     keywords: [
       'dna', 'laboratorio', 'ricerca', 'scienza', 'cellule', 'medica',
-      'biotecnologie del farmaco', 'biotecnologie mediche', 'biotecnologie per la salute',
-      'farmaco', 'salute'
+      'biotecnologie mediche', 'biotecnologie per la salute', 
+      'salute'
     ],
     courses: [
-      'Biotecnologie del Farmaco',
       'Biotecnologie mediche',
       'Biotecnologie per la salute'
     ],
@@ -186,11 +185,12 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     color: '#f94144',
     keywords: [
       'farmaci', 'chimica', 'salute', 'laboratorio', 'erboristeria', 'preparazioni',
-      'chimica e tecnologia farmaceutiche', 'controllo di qualità', 'farmacia',
+      'chimica e tecnologia farmaceutiche', 'biotecnologie del farmaco', 'controllo di qualità', 'farmacia', 'farmaco'
       'scienza e tecnologia dell’industria cosmetica', 'scienze e tecnologie erboristiche',
       'scienze nutraceutiche', 'tossicologia chimica e ambientale', 'cosmetica', 'nutraceutica', 'tossicologia'
     ],
     courses: [
+      'Biotecnologie del Farmaco',
       'Chimica e Tecnologia Farmaceutiche',
       'Controllo di Qualità',
       'Farmacia',
