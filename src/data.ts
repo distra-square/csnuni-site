@@ -185,9 +185,9 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
     color: '#f94144',
     keywords: [
       'farmaci', 'chimica', 'salute', 'laboratorio', 'erboristeria', 'preparazioni',
-      'chimica e tecnologia farmaceutiche', 'biotecnologie del farmaco', 'controllo di qualità', 'farmacia', 'farmaco'
-      'scienza e tecnologia dell’industria cosmetica', 'scienze e tecnologie erboristiche',
-      'scienze nutraceutiche', 'tossicologia chimica e ambientale', 'cosmetica', 'nutraceutica', 'tossicologia'
+      'chimica e tecnologia farmaceutiche', 'biotecnologie del farmaco', 'controllo di qualità', 'farmacia', 'farmaco',
+      'scienza e tecnologia dell’industria cosmetica', 'scienze e tecnologie erboristiche', 'scienze nutraceutiche',
+      'tossicologia chimica e ambientale', 'cosmetica', 'nutraceutica', 'tossicologia'
     ],
     courses: [
       'Biotecnologie del Farmaco',
