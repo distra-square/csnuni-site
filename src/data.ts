@@ -380,7 +380,7 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
         description: 'Medicine and Surgery (English).', 
         link: 'https://instagram.com/imsa_unina', 
         instagram: 'https://instagram.com/imsa_unina',
-        whatsapp: 'https://chat.whatsapp.com/Gngu7MHj4qF4ReXX1BJHBU?s=sw&p=i&ilr=1&amv=0', 
+        whatsapp: 'https://chat.whatsapp.com/DR9n0M76KAtLW73llVMH49?s=cl&p=i&ilr=1&amv=0', 
         logo: '/IMSA.png' 
       },
       { 
