@@ -108,8 +108,11 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
         name: 'Archetipi', 
         description: 'Associazione di riferimento per il dipartimento di Architettura.', 
         link: 'https://instagram.com/archetipi.unina', 
-        instagram: 'https://instagram.com/archetipi.unina', 
-        whatsapp: 'https://chat.whatsapp.com/EuL6qNSehmx6JDMmMzQa0a?mode=gi_t', 
+        instagram: 'https://instagram.com/archetipi.unina',
+        customLinks: [
+          { label: 'Community WhatsApp', url: 'https://chat.whatsapp.com/KRyoJIzLmCQI7LoFNKQBPf', type: 'whatsapp' }
+          //{ label: 'Test d\'ingresso - DiARC', url: 'https://chat.whatsapp.com/EuL6qNSehmx6JDMmMzQa0a?mode=gi_t', type: 'whatsapp' }
+        ], 
         logo: '/ARCHETIPI.png' 
       }
     ]
