@@ -429,7 +429,7 @@ export default function GuidesPage({ onBackToHome }: GuidesPageProps) {
                           <iframe 
                             src={`${embedUrl}/embed`}
                             className="w-full h-[460px] border-0 rounded-2xl bg-white" 
-                            allowTransparency={true}
+                            allowtransparency="true"
                             allow="encrypted-media"
                             scrolling="no"
                             title="Official Instagram Post Embed"
