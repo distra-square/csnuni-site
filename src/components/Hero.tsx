@@ -1,7 +1,11 @@
 import { motion } from 'motion/react';
 import { Sparkles, GraduationCap, Users, MessageCircle } from 'lucide-react';
 
-export default function Hero() {
+interface HeroProps {
+  onViewChange: (view: 'home' | 'guides') => void;
+}
+
+export default function Hero({ onViewChange }: HeroProps) {
   return (
     <header id="inizio" className="relative pt-32 pb-20 px-4 overflow-hidden">
       {/* Decorative Elements */}
@@ -47,6 +51,12 @@ export default function Hero() {
             <a href="#aree" className="bg-csn-blue text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-csn-blue/20 hover:scale-105 active:scale-95 transition-all outline-none">
               Inizia l'Orientamento
             </a>
+            <button 
+              onClick={() => onViewChange('guides')}
+              className="bg-csn-yellow text-csn-blue px-8 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-csn-yellow/20 hover:scale-105 active:scale-95 transition-all outline-none cursor-pointer"
+            >
+              Guide e Novità
+            </button>
             <a href="#chi-siamo" className="bg-white text-csn-blue border-2 border-slate-100 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all outline-none">
               Chi Siamo
             </a>
