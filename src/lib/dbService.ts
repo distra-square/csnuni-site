@@ -34,38 +34,54 @@ function saveLocalStorageGuides(guides: Guide[]) {
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(guides));
 }
 
-// Recursively remove undefined, null, and empty string properties from objects for Firestore safety
-function sanitizeForFirestore<T>(obj: T): T {
-  if (obj === null || obj === undefined) {
-    return undefined as any;
-  }
+// Strictly map a Guide to a clean plain object for Firestore safety, ensuring no 'undefined' fields exist
+export function prepareGuideForFirestore(guide: any): any {
+  if (!guide) return null;
   
-  if (Array.isArray(obj)) {
-    const arr = obj
-      .map(item => sanitizeForFirestore(item))
-      .filter(item => item !== undefined && item !== null);
-    return arr as any;
+  const data: any = {
+    id: String(guide.id || '').trim().toLowerCase().replace(/\s+/g, '-'),
+    title: String(guide.title || '').trim(),
+    category: String(guide.category || 'Borse & Contributi').trim(),
+    date: String(guide.date || '').trim(),
+    readTime: String(guide.readTime || '').trim(),
+    excerpt: String(guide.excerpt || '').trim(),
+  };
+
+  if (guide.sections && Array.isArray(guide.sections)) {
+    data.sections = guide.sections.map((sec: any) => {
+      const cleanSec: any = {
+        title: String(sec.title || '').trim(),
+        content: String(sec.content || '').trim()
+      };
+      if (sec.bullets && Array.isArray(sec.bullets)) {
+        const cleanBullets = sec.bullets
+          .map((b: any) => String(b || '').trim())
+          .filter((b: string) => b !== '');
+        if (cleanBullets.length > 0) {
+          cleanSec.bullets = cleanBullets;
+        }
+      }
+      return cleanSec;
+    });
+  } else {
+    data.sections = [];
   }
-  
-  if (typeof obj === 'object') {
-    const cleaned: any = {};
-    for (const key of Object.keys(obj)) {
-      const val = (obj as any)[key];
-      if (val === undefined || val === null) {
-        continue;
-      }
-      if (typeof val === 'string' && val.trim() === '') {
-        continue;
-      }
-      const sanitizedVal = sanitizeForFirestore(val);
-      if (sanitizedVal !== undefined && sanitizedVal !== null) {
-        cleaned[key] = sanitizedVal;
-      }
-    }
-    return cleaned;
+
+  // Only assign optional fields if they have non-empty, valid string values
+  if (guide.officialUrl && typeof guide.officialUrl === 'string' && guide.officialUrl.trim() !== '') {
+    data.officialUrl = guide.officialUrl.trim();
   }
-  
-  return obj;
+  if (guide.officialUrlLabel && typeof guide.officialUrlLabel === 'string' && guide.officialUrlLabel.trim() !== '') {
+    data.officialUrlLabel = guide.officialUrlLabel.trim();
+  }
+  if (guide.instagramPostUrl && typeof guide.instagramPostUrl === 'string' && guide.instagramPostUrl.trim() !== '') {
+    data.instagramPostUrl = guide.instagramPostUrl.trim();
+  }
+  if (guide.instagramPostCaption && typeof guide.instagramPostCaption === 'string' && guide.instagramPostCaption.trim() !== '') {
+    data.instagramPostCaption = guide.instagramPostCaption.trim();
+  }
+
+  return data;
 }
 
 let lastFirebaseError: string | null = null;
@@ -107,7 +123,7 @@ export async function getGuides(): Promise<Guide[]> {
 }
 
 export async function saveGuide(guide: Guide): Promise<void> {
-  const sanitizedGuide = sanitizeForFirestore(guide);
+  const sanitizedGuide = prepareGuideForFirestore(guide);
   if (db) {
     try {
       lastFirebaseError = null;
@@ -166,7 +182,7 @@ export async function seedDefaultGuidesToCloud(): Promise<void> {
   try {
     lastFirebaseError = null;
     for (const guide of GUIDES_DATA) {
-      const sanitized = sanitizeForFirestore(guide);
+      const sanitized = prepareGuideForFirestore(guide);
       const docRef = doc(db, COLLECTION_NAME, sanitized.id);
       await setDoc(docRef, sanitized);
     }
