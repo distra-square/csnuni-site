@@ -171,11 +171,18 @@ export default function AdminPage({ onBackToHome }: AdminPageProps) {
       date: editingGuide.date || 'Oggi',
       readTime: editingGuide.readTime || '3 min',
       excerpt: editingGuide.excerpt.trim(),
-      officialUrl: editingGuide.officialUrl?.trim() || undefined,
-      officialUrlLabel: editingGuide.officialUrlLabel?.trim() || undefined,
-      instagramPostUrl: editingGuide.instagramPostUrl?.trim() || undefined,
       sections: cleanedSections
     };
+
+    if (editingGuide.officialUrl?.trim()) {
+      finalGuide.officialUrl = editingGuide.officialUrl.trim();
+    }
+    if (editingGuide.officialUrlLabel?.trim()) {
+      finalGuide.officialUrlLabel = editingGuide.officialUrlLabel.trim();
+    }
+    if (editingGuide.instagramPostUrl?.trim()) {
+      finalGuide.instagramPostUrl = editingGuide.instagramPostUrl.trim();
+    }
 
     setLoading(true);
     try {
