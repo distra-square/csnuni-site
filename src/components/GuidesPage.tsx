@@ -25,6 +25,7 @@ export default function GuidesPage({ onBackToHome }: GuidesPageProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [selectedGuideId, setSelectedGuideId] = useState<string | null>(null);
   const [copiedLink, setCopiedLink] = useState(false);
+  const [sidebarTab, setSidebarTab] = useState<'live' | 'graphic'>('live');
 
   // Categories list
   const categories = useMemo(() => {
@@ -48,6 +49,20 @@ export default function GuidesPage({ onBackToHome }: GuidesPageProps) {
   const selectedGuide = useMemo(() => {
     return GUIDES_DATA.find(g => g.id === selectedGuideId) || null;
   }, [selectedGuideId]);
+
+  const embedUrl = useMemo(() => {
+    if (!selectedGuide?.instagramPostUrl) return null;
+    const match = selectedGuide.instagramPostUrl.match(/\/(p|reel|tv)\/([A-Za-z0-9_-]+)/);
+    if (match && match[2]) {
+      return `https://www.instagram.com/p/${match[2]}/embed`;
+    }
+    return null;
+  }, [selectedGuide]);
+
+  const handleSelectGuide = (id: string | null) => {
+    setSelectedGuideId(id);
+    setSidebarTab('live');
+  };
 
   const handleShare = () => {
     setCopiedLink(true);
@@ -155,7 +170,7 @@ export default function GuidesPage({ onBackToHome }: GuidesPageProps) {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: idx * 0.05 }}
                       className="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-xs hover:shadow-xl hover:-translate-y-1 hover:border-csn-blue/10 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
-                      onClick={() => setSelectedGuideId(guide.id)}
+                      onClick={() => handleSelectGuide(guide.id)}
                     >
                       <div>
                         {/* Meta Category & Badges */}
@@ -251,7 +266,7 @@ export default function GuidesPage({ onBackToHome }: GuidesPageProps) {
                 {/* Floating category tag */}
                 <div className="flex flex-wrap items-center gap-3 mb-6 select-none">
                   <button 
-                    onClick={() => setSelectedGuideId(null)}
+                    onClick={() => handleSelectGuide(null)}
                     className="p-2 bg-slate-50 hover:bg-slate-100 rounded-xl text-slate-500 hover:text-csn-blue transition-colors cursor-pointer shrink-0"
                     title="Indietro alla lista"
                   >
@@ -353,17 +368,82 @@ export default function GuidesPage({ onBackToHome }: GuidesPageProps) {
               <aside className="lg:col-span-4 space-y-6">
                 {/* Back button wrapper for ease */}
                 <button 
-                  onClick={() => setSelectedGuideId(null)}
+                  onClick={() => handleSelectGuide(null)}
                   className="w-full bg-white hover:bg-slate-100 border border-slate-100 hover:border-slate-200 text-slate-600 font-bold py-4 px-6 rounded-2xl transition-all flex items-center justify-center gap-2 select-none cursor-pointer text-sm"
                 >
                   <ArrowLeft size={16} />
                   <span>Torna all&apos;elenco guide</span>
                 </button>
 
-                {/* Mockup Instagram Post card indicating correlation */}
-                <div className="bg-[#0f141c] text-white rounded-[2.5rem] p-5 shadow-xl border border-slate-800 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/5 rounded-full blur-2xl pointer-events-none" />
-                  
+                {/* Instagram Post Correlation Container */}
+                <div className="bg-[#0f141c] text-white rounded-[2.5rem] shadow-xl border border-slate-800 overflow-hidden flex flex-col">
+                  {/* Optional Header tabs if there is an embedUrl */}
+                  {embedUrl ? (
+                    <div className="flex bg-[#161c26] p-1 border-b border-slate-800">
+                      <button
+                        type="button"
+                        onClick={() => setSidebarTab('live')}
+                        className={`flex-1 py-2.5 text-xs font-black uppercase tracking-wider rounded-2xl transition-all cursor-pointer ${
+                          sidebarTab === 'live' 
+                            ? 'bg-csn-blue text-white shadow-xs' 
+                            : 'text-slate-400 hover:text-slate-200'
+                        }`}
+                      >
+                        Post Live
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSidebarTab('graphic')}
+                        className={`flex-1 py-2.5 text-xs font-black uppercase tracking-wider rounded-2xl transition-all cursor-pointer ${
+                          sidebarTab === 'graphic' 
+                            ? 'bg-csn-blue text-white shadow-xs' 
+                            : 'text-slate-400 hover:text-slate-200'
+                        }`}
+                      >
+                        Info & Grafica
+                      </button>
+                    </div>
+                  ) : null}
+
+                  {/* Content Container */}
+                  <div className="p-5 flex-1 flex flex-col justify-between">
+                    {sidebarTab === 'live' && embedUrl ? (
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between border-b border-slate-800/60 pb-3 select-none">
+                          <div className="flex items-center gap-2">
+                            <Instagram size={16} className="text-[#ee2a7b]" />
+                            <span className="font-extrabold text-xs text-white">Anteprima Live</span>
+                          </div>
+                          <a 
+                            href={selectedGuide.instagramPostUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-pink-400 hover:text-pink-300 font-bold text-xs flex items-center gap-1 transition-colors"
+                          >
+                            Apri su Instagram <ExternalLink size={11} />
+                          </a>
+                        </div>
+
+                        <div className="relative w-full overflow-hidden rounded-2xl border border-slate-800 bg-[#070a0e] flex items-center justify-center min-h-[460px]">
+                          {/* Real Instagram Post embed iframe */}
+                          <iframe 
+                            src={`${embedUrl}/embed`}
+                            className="w-full h-[460px] border-0 rounded-2xl bg-white" 
+                            allowTransparency={true}
+                            allow="encrypted-media"
+                            scrolling="no"
+                            title="Official Instagram Post Embed"
+                          />
+                        </div>
+                        
+                        <p className="text-slate-400 text-[10px] text-center italic mt-2">
+                          Se l&apos;anteprima non si carica, assicurati di disattivare eventuali ad-blocker o passa alla scheda &quot;Info & Grafica&quot;.
+                        </p>
+                      </div>
+                    ) : (
+                      /* Original mockup fallback */
+                      <div>
+
                   {/* Top line profile header */}
                   <div className="flex items-center justify-between border-b border-slate-800/60 pb-3 mb-4 select-none">
                     <div className="flex items-center gap-2.5">
@@ -379,7 +459,7 @@ export default function GuidesPage({ onBackToHome }: GuidesPageProps) {
                             <Check size={7} strokeWidth={4} />
                           </span>
                         </div>
-                        <span className="text-[10px] text-slate-400 leading-none block">Post programmato</span>
+                       <span className="text-[10px] text-slate-400 leading-none block">Post Ufficiale</span>
                       </div>
                     </div>
                     <span className="bg-pink-500/10 text-pink-400 px-2 py-1 rounded-md text-[9px] font-black uppercase tracking-wider border border-pink-500/20">
@@ -429,6 +509,9 @@ export default function GuidesPage({ onBackToHome }: GuidesPageProps) {
                     </a>
                   </div>
                 </div>
+              )}
+            </div>
+          </div>
 
                 {/* Helpful Contact Helpdesk banner inside sidebar */}
                 <div className="bg-white border border-slate-100 rounded-3xl p-5 shadow-xs space-y-4">
