@@ -34,6 +34,33 @@ function saveLocalStorageGuides(guides: Guide[]) {
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(guides));
 }
 
+// Recursively remove undefined, null, and empty string properties from objects for Firestore safety
+function sanitizeForFirestore<T>(obj: T): T {
+  if (obj === null || obj === undefined) {
+    return undefined as any;
+  }
+  if (Array.isArray(obj)) {
+    return obj
+      .map(item => sanitizeForFirestore(item))
+      .filter(item => item !== undefined) as any;
+  }
+  if (typeof obj === 'object') {
+    const cleaned: any = {};
+    for (const key of Object.keys(obj)) {
+      const val = sanitizeForFirestore((obj as any)[key]);
+      if (val !== undefined && val !== null) {
+        // If it's an empty string, we omit it
+        if (typeof val === 'string' && val.trim() === '') {
+          continue;
+        }
+        cleaned[key] = val;
+      }
+    }
+    return cleaned;
+  }
+  return obj;
+}
+
 let lastFirebaseError: string | null = null;
 
 export function getFirebaseError(): string | null {
@@ -73,32 +100,33 @@ export async function getGuides(): Promise<Guide[]> {
 }
 
 export async function saveGuide(guide: Guide): Promise<void> {
+  const sanitizedGuide = sanitizeForFirestore(guide);
   if (db) {
     try {
       lastFirebaseError = null;
-      const docRef = doc(db, COLLECTION_NAME, guide.id);
-      await setDoc(docRef, guide);
-      console.log(`Guide ${guide.id} saved to Firestore successfully.`);
+      const docRef = doc(db, COLLECTION_NAME, sanitizedGuide.id);
+      await setDoc(docRef, sanitizedGuide);
+      console.log(`Guide ${sanitizedGuide.id} saved to Firestore successfully.`);
     } catch (error: any) {
       console.error('Error saving guide to Firestore:', error);
       lastFirebaseError = error?.message || String(error);
       // Save locally as fallback
       const local = getLocalStorageGuides();
-      const index = local.findIndex((g) => g.id === guide.id);
+      const index = local.findIndex((g) => g.id === sanitizedGuide.id);
       if (index > -1) {
-        local[index] = guide;
+        local[index] = sanitizedGuide;
       } else {
-        local.push(guide);
+        local.push(sanitizedGuide);
       }
       saveLocalStorageGuides(local);
     }
   } else {
     const local = getLocalStorageGuides();
-    const index = local.findIndex((g) => g.id === guide.id);
+    const index = local.findIndex((g) => g.id === sanitizedGuide.id);
     if (index > -1) {
-      local[index] = guide;
+      local[index] = sanitizedGuide;
     } else {
-      local.push(guide);
+      local.push(sanitizedGuide);
     }
     saveLocalStorageGuides(local);
   }
@@ -131,8 +159,9 @@ export async function seedDefaultGuidesToCloud(): Promise<void> {
   try {
     lastFirebaseError = null;
     for (const guide of GUIDES_DATA) {
-      const docRef = doc(db, COLLECTION_NAME, guide.id);
-      await setDoc(docRef, guide);
+      const sanitized = sanitizeForFirestore(guide);
+      const docRef = doc(db, COLLECTION_NAME, sanitized.id);
+      await setDoc(docRef, sanitized);
     }
     console.log('Successfully seeded default guides to Firestore cloud.');
   } catch (error: any) {
