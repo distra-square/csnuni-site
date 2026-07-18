@@ -110,9 +110,6 @@ export default function AdminPage({ onBackToHome }: AdminPageProps) {
       date: formattedDate,
       readTime: '3 min',
       excerpt: '',
-      officialUrl: '',
-      officialUrlLabel: '',
-      instagramPostUrl: '',
       sections: [
         { title: 'Introduzione', content: '' }
       ]
@@ -182,6 +179,9 @@ export default function AdminPage({ onBackToHome }: AdminPageProps) {
     }
     if (editingGuide.instagramPostUrl?.trim()) {
       finalGuide.instagramPostUrl = editingGuide.instagramPostUrl.trim();
+    }
+    if (editingGuide.instagramPostCaption?.trim()) {
+      finalGuide.instagramPostCaption = editingGuide.instagramPostCaption.trim();
     }
 
     setLoading(true);
@@ -257,6 +257,40 @@ export default function AdminPage({ onBackToHome }: AdminPageProps) {
       ...editingGuide,
       sections: currentSections
     });
+  };
+
+  const handleAddOfficialUrl = () => {
+    if (!editingGuide) return;
+    setEditingGuide({
+      ...editingGuide,
+      officialUrl: '',
+      officialUrlLabel: 'Bando Ufficiale su Unina.it'
+    });
+  };
+
+  const handleRemoveOfficialUrl = () => {
+    if (!editingGuide) return;
+    const updated = { ...editingGuide };
+    delete updated.officialUrl;
+    delete updated.officialUrlLabel;
+    setEditingGuide(updated);
+  };
+
+  const handleAddInstagram = () => {
+    if (!editingGuide) return;
+    setEditingGuide({
+      ...editingGuide,
+      instagramPostUrl: '',
+      instagramPostCaption: ''
+    });
+  };
+
+  const handleRemoveInstagram = () => {
+    if (!editingGuide) return;
+    const updated = { ...editingGuide };
+    delete updated.instagramPostUrl;
+    delete updated.instagramPostCaption;
+    setEditingGuide(updated);
   };
 
   const handleAddBullet = (sectionIndex: number) => {
@@ -691,53 +725,133 @@ service cloud.firestore {
                   </div>
                 </div>
 
-                {/* Third-Party Info (Bando e Instagram Embed) */}
+                {/* Sezioni Opzionali Dinamiche (Bando e Instagram) */}
                 <div className="bg-slate-50 p-4 rounded-2xl border border-slate-150 space-y-4">
-                  <span className="text-[10px] font-black text-slate-500 uppercase tracking-wider block">Collegamenti Esterni & Social</span>
+                  <span className="text-[10px] font-black text-slate-500 uppercase tracking-wider block">Integrazioni Opzionali</span>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-[11px] font-extrabold text-slate-600 mb-1">
-                        Link al Bando Ufficiale (opzionale)
-                      </label>
-                      <input
-                        type="url"
-                        placeholder="https://..."
-                        value={editingGuide.officialUrl || ''}
-                        onChange={(e) => setEditingGuide({ ...editingGuide, officialUrl: e.target.value })}
-                        className="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs bg-white focus:outline-hidden focus:ring-1 focus:ring-csn-blue"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-[11px] font-extrabold text-slate-600 mb-1">
-                        Etichetta del Link (opzionale)
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="es. Bando Ufficiale su Unina.it"
-                        value={editingGuide.officialUrlLabel || ''}
-                        onChange={(e) => setEditingGuide({ ...editingGuide, officialUrlLabel: e.target.value })}
-                        className="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs bg-white focus:outline-hidden focus:ring-1 focus:ring-csn-blue"
-                      />
-                    </div>
-
-                    <div className="md:col-span-2">
-                      <label className="block text-[11px] font-extrabold text-slate-600 mb-1">
-                        URL Post Instagram per l&apos;Embed (opzionale - il box si attiva solo se valorizzato)
-                      </label>
-                      <input
-                        type="url"
-                        placeholder="https://www.instagram.com/p/DaVqT2gow_X/"
-                        value={editingGuide.instagramPostUrl || ''}
-                        onChange={(e) => setEditingGuide({ ...editingGuide, instagramPostUrl: e.target.value })}
-                        className="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs bg-white focus:outline-hidden focus:ring-1 focus:ring-csn-blue"
-                      />
-                      <span className="text-[9px] text-slate-400 block mt-1 italic">
-                        Inserisci l&apos;URL completo del post. Se presente, attiverà automaticamente il box embed di Instagram nella barra laterale destra della guida.
-                      </span>
-                    </div>
+                  <div className="flex flex-wrap gap-3">
+                    {editingGuide.officialUrl === undefined && (
+                      <button
+                        type="button"
+                        onClick={handleAddOfficialUrl}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-200 hover:border-csn-blue hover:text-csn-blue text-slate-700 rounded-xl text-xs font-semibold shadow-xs transition-all"
+                      >
+                        <Plus size={13} />
+                        Aggiungi Link Bando Ufficiale
+                      </button>
+                    )}
+                    
+                    {editingGuide.instagramPostUrl === undefined && (
+                      <button
+                        type="button"
+                        onClick={handleAddInstagram}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-200 hover:border-csn-blue hover:text-csn-blue text-slate-700 rounded-xl text-xs font-semibold shadow-xs transition-all"
+                      >
+                        <Plus size={13} />
+                        Aggiungi Integrazione Instagram
+                      </button>
+                    )}
                   </div>
+
+                  {(editingGuide.officialUrl !== undefined || editingGuide.instagramPostUrl !== undefined) && (
+                    <div className="space-y-4 pt-2">
+                      {/* Bando Ufficiale Block */}
+                      {editingGuide.officialUrl !== undefined && (
+                        <div className="p-3 bg-white border border-slate-150 rounded-xl relative space-y-3 shadow-xs">
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-black text-slate-700 uppercase tracking-wide">Collegamento Bando Ufficiale</span>
+                            <button
+                              type="button"
+                              onClick={handleRemoveOfficialUrl}
+                              className="text-slate-400 hover:text-rose-600 p-1 rounded-lg transition-colors flex items-center gap-1 text-[10px] font-bold"
+                              title="Rimuovi Collegamento"
+                            >
+                              <Trash2 size={13} /> Rimuovi
+                            </button>
+                          </div>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div>
+                              <label className="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wider mb-1">
+                                Link al Bando Ufficiale
+                              </label>
+                              <input
+                                type="url"
+                                required
+                                placeholder="https://..."
+                                value={editingGuide.officialUrl || ''}
+                                onChange={(e) => setEditingGuide({ ...editingGuide, officialUrl: e.target.value })}
+                                className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs bg-white focus:outline-hidden focus:ring-1 focus:ring-csn-blue"
+                              />
+                            </div>
+
+                            <div>
+                              <label className="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wider mb-1">
+                                Etichetta del Link (es. Bando Ufficiale su Unina.it)
+                              </label>
+                              <input
+                                type="text"
+                                required
+                                placeholder="es. Leggi il Bando Ufficiale"
+                                value={editingGuide.officialUrlLabel || ''}
+                                onChange={(e) => setEditingGuide({ ...editingGuide, officialUrlLabel: e.target.value })}
+                                className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs bg-white focus:outline-hidden focus:ring-1 focus:ring-csn-blue"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Instagram Block */}
+                      {editingGuide.instagramPostUrl !== undefined && (
+                        <div className="p-3 bg-white border border-slate-150 rounded-xl relative space-y-3 shadow-xs">
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-black text-slate-700 uppercase tracking-wide">Integrazione Post Instagram (Embed)</span>
+                            <button
+                              type="button"
+                              onClick={handleRemoveInstagram}
+                              className="text-slate-400 hover:text-rose-600 p-1 rounded-lg transition-colors flex items-center gap-1 text-[10px] font-bold"
+                              title="Rimuovi Integrazione"
+                            >
+                              <Trash2 size={13} /> Rimuovi
+                            </button>
+                          </div>
+                          
+                          <div className="space-y-3">
+                            <div>
+                              <label className="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wider mb-1">
+                                URL Completo del Post Instagram
+                              </label>
+                              <input
+                                type="url"
+                                required
+                                placeholder="https://www.instagram.com/p/..."
+                                value={editingGuide.instagramPostUrl || ''}
+                                onChange={(e) => setEditingGuide({ ...editingGuide, instagramPostUrl: e.target.value })}
+                                className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs bg-white focus:outline-hidden focus:ring-1 focus:ring-csn-blue"
+                              />
+                              <span className="text-[9px] text-slate-400 block mt-1 italic">
+                                Se presente, attiverà automaticamente il box embed di Instagram nella barra laterale destra della guida.
+                              </span>
+                            </div>
+                            
+                            <div>
+                              <label className="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wider mb-1">
+                                Didascalia del Post (opzionale)
+                              </label>
+                              <textarea
+                                rows={2}
+                                placeholder="Inserisci il testo descrittivo del post Instagram..."
+                                value={editingGuide.instagramPostCaption || ''}
+                                onChange={(e) => setEditingGuide({ ...editingGuide, instagramPostCaption: e.target.value })}
+                                className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs bg-white focus:outline-hidden focus:ring-1 focus:ring-csn-blue"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
 
                 {/* Sections Array Editor */}
