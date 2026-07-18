@@ -184,44 +184,9 @@ export default function AdminPage({ onBackToHome }: AdminPageProps) {
       finalGuide.instagramPostUrl = editingGuide.instagramPostUrl.trim();
     }
 
-    // Force absolute deep recursive sanitization right here to prevent any Firestore undefined errors
-    const deepClean = (obj: any): any => {
-      if (obj === null || obj === undefined) {
-        return undefined;
-      }
-      if (Array.isArray(obj)) {
-        return obj
-          .map(item => deepClean(item))
-          .filter(item => item !== undefined && item !== null);
-      }
-      if (typeof obj === 'object') {
-        const cleaned: any = {};
-        for (const key of Object.keys(obj)) {
-          const val = obj[key];
-          if (val === undefined || val === null) {
-            continue;
-          }
-          if (typeof val === 'string' && val.trim() === '') {
-            continue;
-          }
-          const sanitizedVal = deepClean(val);
-          if (sanitizedVal !== undefined && sanitizedVal !== null) {
-            cleaned[key] = sanitizedVal;
-          }
-        }
-        return cleaned;
-      }
-      return obj;
-    };
-
-    const cleanedGuide = deepClean(finalGuide);
-
-    console.log('[DEBUG] Guide to be saved:', cleanedGuide);
-    console.log('[DEBUG] Keys to be saved:', Object.keys(cleanedGuide));
-
     setLoading(true);
     try {
-      await saveGuide(cleanedGuide);
+      await saveGuide(finalGuide);
       const err = getFirebaseError();
       if (err) {
         showStatus('error', `Salvataggio Cloud fallito (${err}). Salvata temporaneamente nel browser.`);
