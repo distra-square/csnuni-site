@@ -104,6 +104,10 @@ export const GUIDES_DATA: Guide[] = [
     date: '05 Luglio 2026',
     readTime: '5 min',
     excerpt: 'Vuoi pagare le tasse in base al tuo reddito? Scopri come richiedere l\'attestazione ISEE-U all\'INPS e come autorizzare l\'ateneo ad acquisirla automaticamente per evitare tariffe massime.',
+    officialUrl: 'https://www.unina.it/it/servizi-e-opportunita/opportunita-e-iniziative/locazioni-studenti-fuori-sede',
+    officialUrlLabel: 'Bando Ufficiale su Unina.it',
+    instagramPostUrl: 'https://www.instagram.com/p/DaVqT2gow_X/',
+
     sections: [
       {
         title: 'Cos\'è l\'ISEE Università e perché serve',
