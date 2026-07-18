@@ -17,7 +17,7 @@ import {
   X,
   RefreshCw
 } from 'lucide-react';
-import { getGuides, saveGuide, deleteGuide, seedDefaultGuidesToCloud, resetLocalDataToDefaults } from '../lib/dbService';
+import { getGuides, saveGuide, deleteGuide, seedDefaultGuidesToCloud, resetLocalDataToDefaults, getFirebaseError } from '../lib/dbService';
 import { isFirebaseConfigured } from '../lib/firebase';
 import { Guide, GuideSection } from '../guidesData';
 
@@ -33,6 +33,7 @@ export default function AdminPage({ onBackToHome }: AdminPageProps) {
   const [guides, setGuides] = useState<Guide[]>([]);
   const [loading, setLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
+  const [firebaseError, setFirebaseError] = useState<string | null>(null);
   
   // Edit mode state
   const [editingGuide, setEditingGuide] = useState<Partial<Guide> | null>(null);
@@ -60,9 +61,11 @@ export default function AdminPage({ onBackToHome }: AdminPageProps) {
       const data = await getGuides();
       // Sort guides by date/id
       setGuides(data);
+      setFirebaseError(getFirebaseError());
     } catch (e) {
       console.error(e);
       showStatus('error', 'Errore durante il caricamento delle guide.');
+      setFirebaseError(getFirebaseError());
     } finally {
       setLoading(false);
     }
@@ -177,12 +180,20 @@ export default function AdminPage({ onBackToHome }: AdminPageProps) {
     setLoading(true);
     try {
       await saveGuide(finalGuide);
-      showStatus('success', 'Guida salvata correttamente!');
-      setEditingGuide(null);
+      const err = getFirebaseError();
+      if (err) {
+        showStatus('error', `Salvataggio Cloud fallito (${err}). Salvata temporaneamente nel browser.`);
+        setFirebaseError(err);
+      } else {
+        showStatus('success', 'Guida salvata correttamente!');
+        setFirebaseError(null);
+        setEditingGuide(null);
+      }
       await loadGuidesData();
     } catch (e) {
       console.error(e);
       showStatus('error', 'Impossibile salvare la guida.');
+      setFirebaseError(getFirebaseError());
     } finally {
       setLoading(false);
     }
@@ -398,31 +409,76 @@ export default function AdminPage({ onBackToHome }: AdminPageProps) {
 
         {/* Firebase Config Info Bar */}
         <div className={`p-5 rounded-3xl border flex flex-col md:flex-row gap-4 justify-between items-start md:items-center ${
-          isFirebaseConfigured 
-            ? 'bg-emerald-50/50 border-emerald-100 text-emerald-800' 
-            : 'bg-amber-50/60 border-amber-100 text-amber-900'
+          !isFirebaseConfigured 
+            ? 'bg-amber-50/60 border-amber-100 text-amber-900' 
+            : firebaseError
+            ? 'bg-rose-50/70 border-rose-100 text-rose-950'
+            : 'bg-emerald-50/50 border-emerald-100 text-emerald-800'
         }`}>
           <div className="flex items-start gap-3">
-            <div className={`p-2.5 rounded-2xl ${isFirebaseConfigured ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
+            <div className={`p-2.5 rounded-2xl ${
+              !isFirebaseConfigured 
+                ? 'bg-amber-100 text-amber-700' 
+                : firebaseError 
+                ? 'bg-rose-100 text-rose-700' 
+                : 'bg-emerald-100 text-emerald-700'
+            }`}>
               <Database size={20} />
             </div>
             <div className="space-y-1">
-              <h3 className="font-extrabold text-sm flex items-center gap-1.5">
+              <h3 className="font-extrabold text-sm flex items-center gap-1.5 flex-wrap">
                 <span>Stato Database:</span>
                 <span className={`px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider ${
-                  isFirebaseConfigured ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+                  !isFirebaseConfigured 
+                    ? 'bg-amber-100 text-amber-800' 
+                    : firebaseError 
+                    ? 'bg-rose-100 text-rose-800' 
+                    : 'bg-emerald-100 text-emerald-800'
                 }`}>
-                  {isFirebaseConfigured ? 'CLOUD (FIREBASE ACTIVE)' : 'DATABASE LOCALE (LOCAL STORAGE)'}
+                  {!isFirebaseConfigured 
+                    ? 'DATABASE LOCALE (LOCAL STORAGE)' 
+                    : firebaseError 
+                    ? 'ERRORE COLLEGAMENTO CLOUD' 
+                    : 'CLOUD (FIREBASE ATTIVO)'
+                  }
                 </span>
               </h3>
               <p className="text-xs text-slate-600 max-w-3xl leading-relaxed">
-                {isFirebaseConfigured 
-                  ? 'Il cloud database Firebase è configurato ed attivo. Tutti i collaboratori condividono le stesse guide in tempo reale.' 
-                  : 'Stai usando il Database Locale salvato sul tuo browser. Le modifiche non saranno visibili agli altri collaboratori o utenti finché non configuri le credenziali di Firebase su Vercel.'
+                {!isFirebaseConfigured 
+                  ? 'Stai usando il Database Locale salvato sul tuo browser. Le modifiche non saranno visibili agli altri collaboratori o utenti finché non configuri le credenziali di Firebase su Vercel.'
+                  : firebaseError
+                  ? `Il database Cloud è configurato ma si è verificato un errore: "${firebaseError}". Le guide create ora verranno salvate solo localmente in questo browser.`
+                  : 'Il cloud database Firebase è configurato ed attivo. Tutti i collaboratori condividono le stesse guide in tempo reale.'
                 }
               </p>
             </div>
           </div>
+          
+          {isFirebaseConfigured && firebaseError && (
+            <div className="bg-white/95 p-4 rounded-2xl border border-rose-200 text-xs text-slate-700 max-w-md w-full shrink-0 space-y-2">
+              <span className="font-extrabold text-rose-800 flex items-center gap-1">
+                <AlertCircle size={14} className="text-rose-600" /> Come risolvere l'errore di scrittura:
+              </span>
+              <p className="text-slate-600 leading-snug">
+                Questo avviene quasi sempre perché le <strong>Regole di Sicurezza di Firestore</strong> sono in modalità bloccata (Production mode).
+              </p>
+              <ol className="list-decimal list-inside space-y-1 pl-1 text-slate-600 font-medium">
+                <li>Apri la <a href="https://console.firebase.google.com" target="_blank" rel="noreferrer" className="text-csn-blue underline font-bold">Console Firebase</a></li>
+                <li>Seleziona <strong>Firestore Database</strong> a sinistra e clicca sul tab <strong>Rules (Regole)</strong> in alto</li>
+                <li>Incolla queste regole (permettono l'accesso pubblico a "guides") e clicca su <strong>Publish (Pubblica)</strong>:</li>
+              </ol>
+              <pre className="bg-slate-100 p-2 rounded-lg text-[10px] font-mono text-slate-800 overflow-x-auto whitespace-pre select-all">
+{`rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /guides/{document} {
+      allow read, write: if true;
+    }
+  }
+}`}
+              </pre>
+            </div>
+          )}
           
           {!isFirebaseConfigured && (
             <div className="bg-white/80 p-4 rounded-2xl border border-amber-200 text-xs text-slate-700 max-w-md w-full shrink-0 space-y-2">
