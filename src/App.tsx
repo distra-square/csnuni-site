@@ -3,6 +3,8 @@ import Hero from './components/Hero';
 import AreaGrid from './components/AreaGrid';
 import InstagramFeed from './components/InstagramFeed';
 import Footer from './components/Footer';
+import GuidesPage from './components/GuidesPage';
+import { useState } from 'react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { Instagram, MessageCircle } from 'lucide-react';
 import studentsImage from './assets/images/regenerated_image_1778425878747.png';
@@ -10,6 +12,7 @@ import orientationImage from './assets/images/regenerated_image_1778426150367.jp
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
 export default function App() {
+  const [currentView, setCurrentView] = useState<'home' | 'guides'>('home');
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -25,10 +28,12 @@ export default function App() {
         style={{ scaleX }}
       />
 
-      <Navbar />
+      <Navbar currentView={currentView} onViewChange={setCurrentView} />
       
       <main>
-        <Hero />
+        {currentView === 'home' ? (
+          <>
+            <Hero onViewChange={setCurrentView} />
 
         {/* Quick Groups CTA */}
         <section className="py-8 px-4 max-w-7xl mx-auto">
@@ -143,7 +148,11 @@ export default function App() {
             </a>
           </div>
         </section>
-      </main>
+      </>
+    ) : (
+      <GuidesPage onBackToHome={() => setCurrentView('home')} />
+    )}
+  </main>
 
       <Footer />
       <SpeedInsights />
