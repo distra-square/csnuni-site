@@ -39,26 +39,20 @@ function sanitizeForFirestore<T>(obj: T): T {
   if (obj === null || obj === undefined) {
     return undefined as any;
   }
-  if (Array.isArray(obj)) {
-    return obj
-      .map(item => sanitizeForFirestore(item))
-      .filter(item => item !== undefined) as any;
-  }
-  if (typeof obj === 'object') {
-    const cleaned: any = {};
-    for (const key of Object.keys(obj)) {
-      const val = sanitizeForFirestore((obj as any)[key]);
-      if (val !== undefined && val !== null) {
-        // If it's an empty string, we omit it
-        if (typeof val === 'string' && val.trim() === '') {
-          continue;
-        }
-        cleaned[key] = val;
-      }
+  
+  // Use native JSON stringify with a custom replacer to strip out all undefined, null, or empty string values recursively.
+  const str = JSON.stringify(obj, (key, value) => {
+    if (value === undefined || value === null) {
+      return undefined;
     }
-    return cleaned;
-  }
-  return obj;
+    if (typeof value === 'string' && value.trim() === '') {
+      return undefined;
+    }
+    return value;
+  });
+  
+  if (!str) return undefined as any;
+  return JSON.parse(str);
 }
 
 let lastFirebaseError: string | null = null;
