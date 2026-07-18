@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowLeft, 
@@ -14,7 +14,8 @@ import {
   FileText,
   Share2
 } from 'lucide-react';
-import { GUIDES_DATA } from '../guidesData';
+import { Guide } from '../guidesData';
+import { getGuides } from '../lib/dbService';
 import InstagramEmbed from './InstagramEmbed';
 
 interface GuidesPageProps {
@@ -22,21 +23,37 @@ interface GuidesPageProps {
 }
 
 export default function GuidesPage({ onBackToHome }: GuidesPageProps) {
+  const [guides, setGuides] = useState<Guide[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [selectedGuideId, setSelectedGuideId] = useState<string | null>(null);
   const [copiedLink, setCopiedLink] = useState(false);
   const [sidebarTab, setSidebarTab] = useState<'live' | 'graphic'>('live');
+  
+  useEffect(() => {
+    let active = true;
+    getGuides().then(data => {
+      if (active) {
+        setGuides(data);
+        setLoading(false);
+      }
+    }).catch(err => {
+      console.error(err);
+      if (active) setLoading(false);
+    });
+    return () => { active = false; };
+  }, []);
 
   // Categories list
   const categories = useMemo(() => {
-    const list = new Set(GUIDES_DATA.map(g => g.category));
+    const list = new Set(guides.map(g => g.category));
     return ['All', ...Array.from(list)];
-  }, []);
+  }, [guides]);
 
   // Filtered guides based on search query & selected category
   const filteredGuides = useMemo(() => {
-    return GUIDES_DATA.filter(guide => {
+    return guides.filter(guide => {
       const matchesCategory = selectedCategory === 'All' || guide.category === selectedCategory;
       const lowerSearch = searchQuery.toLowerCase();
       const matchesSearch = 
@@ -45,14 +62,15 @@ export default function GuidesPage({ onBackToHome }: GuidesPageProps) {
         guide.sections.some(s => s.title.toLowerCase().includes(lowerSearch) || s.content.toLowerCase().includes(lowerSearch));
       return matchesCategory && matchesSearch;
     });
-  }, [searchQuery, selectedCategory]);
+  }, [guides, searchQuery, selectedCategory]);
 
   const selectedGuide = useMemo(() => {
-    return GUIDES_DATA.find(g => g.id === selectedGuideId) || null;
-  }, [selectedGuideId]);
+    return guides.find(g => g.id === selectedGuideId) || null;
+  }, [guides, selectedGuideId]);
 
   const embedUrl = useMemo(() => {
     if (!selectedGuide?.instagramPostUrl) return null;
+    
     const match = selectedGuide.instagramPostUrl.match(/\/(p|reel|tv)\/([A-Za-z0-9_-]+)/);
     if (match && match[2]) {
       return `https://www.instagram.com/p/${match[2]}/embed`;
@@ -162,7 +180,27 @@ export default function GuidesPage({ onBackToHome }: GuidesPageProps) {
               </div>
 
               {/* Guides Grid */}
-              {filteredGuides.length > 0 ? (
+              {loading ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-pulse">
+                  {[1, 2, 3].map((n) => (
+                    <div key={n} className="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-xs space-y-4">
+                      <div className="flex justify-between items-center">
+                        <div className="h-5 w-24 bg-slate-100 rounded-lg" />
+                        <div className="h-4 w-12 bg-slate-100 rounded" />
+                      </div>
+                      <div className="h-7 w-3/4 bg-slate-100 rounded-lg" />
+                      <div className="space-y-2">
+                        <div className="h-4 w-full bg-slate-100 rounded" />
+                        <div className="h-4 w-5/6 bg-slate-100 rounded" />
+                      </div>
+                      <div className="border-t border-slate-50 pt-4 flex justify-between items-center">
+                        <div className="h-4 w-20 bg-slate-100 rounded" />
+                        <div className="h-4 w-24 bg-slate-100 rounded" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : filteredGuides.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredGuides.map((guide, idx) => (
                     <motion.article 
