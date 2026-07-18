@@ -15,6 +15,7 @@ import {
   Share2
 } from 'lucide-react';
 import { GUIDES_DATA } from '../guidesData';
+import InstagramEmbed from './InstagramEmbed';
 
 interface GuidesPageProps {
   onBackToHome: () => void;
@@ -376,17 +377,17 @@ export default function GuidesPage({ onBackToHome }: GuidesPageProps) {
                 </button>
 
                 {/* Instagram Post Correlation Container */}
-                <div className="bg-[#0f141c] text-white rounded-[2.5rem] shadow-xl border border-slate-800 overflow-hidden flex flex-col">
+                <div className="bg-white text-slate-800 rounded-[2.5rem] shadow-md border border-slate-100 overflow-hidden flex flex-col">
                   {/* Optional Header tabs if there is an embedUrl */}
                   {embedUrl ? (
-                    <div className="flex bg-[#161c26] p-1 border-b border-slate-800">
+                    <div className="flex bg-slate-50 p-1.5 border-b border-slate-100">
                       <button
                         type="button"
                         onClick={() => setSidebarTab('live')}
-                        className={`flex-1 py-2.5 text-xs font-black uppercase tracking-wider rounded-2xl transition-all cursor-pointer ${
+                        className={`flex-1 py-2 text-xs font-black uppercase tracking-wider rounded-xl transition-all cursor-pointer ${
                           sidebarTab === 'live' 
-                            ? 'bg-csn-blue text-white shadow-xs' 
-                            : 'text-slate-400 hover:text-slate-200'
+                            ? 'bg-csn-blue text-white shadow-sm' 
+                            : 'text-slate-500 hover:text-slate-800'
                         }`}
                       >
                         Post Live
@@ -394,10 +395,10 @@ export default function GuidesPage({ onBackToHome }: GuidesPageProps) {
                       <button
                         type="button"
                         onClick={() => setSidebarTab('graphic')}
-                        className={`flex-1 py-2.5 text-xs font-black uppercase tracking-wider rounded-2xl transition-all cursor-pointer ${
+                        className={`flex-1 py-2 text-xs font-black uppercase tracking-wider rounded-xl transition-all cursor-pointer ${
                           sidebarTab === 'graphic' 
-                            ? 'bg-csn-blue text-white shadow-xs' 
-                            : 'text-slate-400 hover:text-slate-200'
+                            ? 'bg-csn-blue text-white shadow-sm' 
+                            : 'text-slate-500 hover:text-slate-800'
                         }`}
                       >
                         Info & Grafica
@@ -409,109 +410,102 @@ export default function GuidesPage({ onBackToHome }: GuidesPageProps) {
                   <div className="p-5 flex-1 flex flex-col justify-between">
                     {sidebarTab === 'live' && embedUrl ? (
                       <div className="space-y-4">
-                        <div className="flex items-center justify-between border-b border-slate-800/60 pb-3 select-none">
+                        <div className="flex items-center justify-between border-b border-slate-100 pb-3 select-none">
                           <div className="flex items-center gap-2">
                             <Instagram size={16} className="text-[#ee2a7b]" />
-                            <span className="font-extrabold text-xs text-white">Anteprima Live</span>
+                            <span className="font-extrabold text-xs text-slate-800">Anteprima Live</span>
                           </div>
                           <a 
                             href={selectedGuide.instagramPostUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-pink-400 hover:text-pink-300 font-bold text-xs flex items-center gap-1 transition-colors"
+                            className="text-pink-600 hover:text-pink-700 font-extrabold text-xs flex items-center gap-1 transition-colors"
                           >
                             Apri su Instagram <ExternalLink size={11} />
                           </a>
                         </div>
 
-                        <div className="relative w-full overflow-hidden rounded-2xl border border-slate-800 bg-[#070a0e] flex items-center justify-center min-h-[460px]">
-                          {/* Real Instagram Post embed iframe */}
-                          <iframe 
-                            src={`${embedUrl}/embed`}
-                            className="w-full h-[460px] border-0 rounded-2xl bg-white" 
-                            allowtransparency="true"
-                            allow="encrypted-media"
-                            scrolling="no"
-                            title="Official Instagram Post Embed"
-                          />
+                        <div className="relative w-full overflow-hidden rounded-2xl border border-slate-100 bg-white flex items-center justify-center min-h-[460px]">
+                          {selectedGuide.instagramPostUrl && (
+                            <InstagramEmbed url={selectedGuide.instagramPostUrl} />
+                          )}
                         </div>
                         
                         <p className="text-slate-400 text-[10px] text-center italic mt-2">
-                          Se l&apos;anteprima non si carica, assicurati di disattivare eventuali ad-blocker o passa alla scheda &quot;Info & Grafica&quot;.
+                          Se l&apos;anteprima non si carica, puoi aprirla direttamente premendo il link in alto o passare alla scheda &quot;Info & Grafica&quot;.
                         </p>
                       </div>
                     ) : (
                       /* Original mockup fallback */
                       <div>
-
-                  {/* Top line profile header */}
-                  <div className="flex items-center justify-between border-b border-slate-800/60 pb-3 mb-4 select-none">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-full p-[1.5px] bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]">
-                        <div className="w-full h-full rounded-full bg-[#0f141c] p-0.5">
-                          <img src="/logo.png" alt="logo" className="w-full h-full rounded-full object-cover" />
-                        </div>
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-1">
-                          <span className="font-extrabold text-xs text-white">confed_napoli</span>
-                          <span className="w-3 h-3 bg-[#0095f6] rounded-full flex items-center justify-center text-white shrink-0">
-                            <Check size={7} strokeWidth={4} />
+                        {/* Top line profile header */}
+                        <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-4 select-none">
+                          <div className="flex items-center gap-2.5">
+                            <div className="w-8 h-8 rounded-full p-[1.5px] bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]">
+                              <div className="w-full h-full rounded-full bg-white p-0.5">
+                                <img src="/logo.png" alt="logo" className="w-full h-full rounded-full object-cover" />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="flex items-center gap-1">
+                                <span className="font-extrabold text-xs text-slate-800">confed_napoli</span>
+                                <span className="w-3 h-3 bg-[#0095f6] rounded-full flex items-center justify-center text-white shrink-0">
+                                  <Check size={7} strokeWidth={4} />
+                                </span>
+                              </div>
+                              <span className="text-[10px] text-slate-400 leading-none block">Post Ufficiale</span>
+                            </div>
+                          </div>
+                          <span className="bg-pink-50 text-pink-600 px-2 py-1 rounded-md text-[9px] font-black uppercase tracking-wider border border-pink-100">
+                            SOCIAL
                           </span>
                         </div>
-                       <span className="text-[10px] text-slate-400 leading-none block">Post Ufficiale</span>
+
+                        {/* Mock Post graphic area - styled like the official visual identity of the brand */}
+                        <div className="aspect-square w-full rounded-2xl bg-linear-to-tr from-[#002775] to-blue-900 border border-slate-100 p-6 flex flex-col justify-between relative overflow-hidden mb-4 select-none group">
+                          {/* Decorative abstract circle */}
+                          <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[#f5b000]/10 rounded-full blur-xl" />
+                          
+                          <div className="flex justify-between items-start">
+                            <img src="/logo.png" alt="Confed" className="w-8 h-8 object-contain" />
+                            <Instagram size={18} className="text-[#ee2a7b]" />
+                          </div>
+
+                          <div className="space-y-1">
+                            <span className="text-csn-yellow font-black text-xs uppercase tracking-widest bg-white/5 border border-white/10 px-2.5 py-1 rounded-md inline-block">
+                              {selectedGuide.category}
+                            </span>
+                            <h4 className="text-white font-black text-lg leading-tight uppercase tracking-tight">
+                              {selectedGuide.title.length > 55 ? selectedGuide.title.substring(0, 55) + '...' : selectedGuide.title}
+                            </h4>
+                          </div>
+
+                          <div className="flex items-center justify-between border-t border-white/10 pt-3 text-[9px] text-slate-300 font-bold uppercase tracking-wider">
+                            <span>Confederazione Studenti</span>
+                            <span className="text-[#ee2a7b]">Vedi Post →</span>
+                          </div>
+                        </div>
+
+                        {/* Caption mock text */}
+                        <div className="space-y-3">
+                          <p className="text-slate-600 text-xs leading-relaxed whitespace-pre-wrap max-h-40 overflow-y-auto pr-1">
+                            {selectedGuide.instagramPostCaption || 'Segui la nostra pagina ufficiale per consultare le ultime grafiche esplicative su questo argomento.'}
+                          </p>
+
+                          <a 
+                            href={selectedGuide.instagramPostUrl || 'https://instagram.com/confed_napoli'}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full bg-slate-50 hover:bg-slate-100 border border-slate-200/60 text-slate-700 font-extrabold text-center py-3 rounded-xl transition-all flex items-center justify-center gap-1.5 select-none text-xs cursor-pointer"
+                          >
+                            <Instagram size={14} />
+                            <span>Vai al Post Correlato</span>
+                          </a>
+                        </div>
                       </div>
-                    </div>
-                    <span className="bg-pink-500/10 text-pink-400 px-2 py-1 rounded-md text-[9px] font-black uppercase tracking-wider border border-pink-500/20">
-                      SOCIAL
-                    </span>
-                  </div>
-
-                  {/* Mock Post graphic area - styled like the official visual identity of the brand */}
-                  <div className="aspect-square w-full rounded-2xl bg-linear-to-tr from-[#002775] to-blue-900 border border-slate-800 p-6 flex flex-col justify-between relative overflow-hidden mb-4 select-none group">
-                    {/* Decorative abstract circle */}
-                    <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[#f5b000]/10 rounded-full blur-xl" />
-                    
-                    <div className="flex justify-between items-start">
-                      <img src="/logo.png" alt="Confed" className="w-8 h-8 object-contain" />
-                      <Instagram size={18} className="text-[#ee2a7b]" />
-                    </div>
-
-                    <div className="space-y-1">
-                      <span className="text-csn-yellow font-black text-xs uppercase tracking-widest bg-white/5 border border-white/10 px-2.5 py-1 rounded-md inline-block">
-                        {selectedGuide.category}
-                      </span>
-                      <h4 className="text-white font-black text-lg leading-tight uppercase tracking-tight">
-                        {selectedGuide.title.length > 55 ? selectedGuide.title.substring(0, 55) + '...' : selectedGuide.title}
-                      </h4>
-                    </div>
-
-                    <div className="flex items-center justify-between border-t border-white/10 pt-3 text-[9px] text-slate-300 font-bold uppercase tracking-wider">
-                      <span>Confederazione Studenti</span>
-                      <span className="text-[#ee2a7b]">Vedi Post →</span>
-                    </div>
-                  </div>
-
-                  {/* Caption mock text */}
-                  <div className="space-y-3">
-                    <p className="text-slate-300 text-xs leading-relaxed whitespace-pre-wrap max-h-40 overflow-y-auto pr-1">
-                      {selectedGuide.instagramPostCaption || 'Segui la nostra pagina ufficiale per consultare le ultime grafiche esplicative su questo argomento.'}
-                    </p>
-
-                    <a 
-                      href={selectedGuide.instagramPostUrl || 'https://instagram.com/confed_napoli'}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full bg-[#262626] hover:bg-[#363636] text-white font-extrabold text-center py-3 rounded-xl transition-all flex items-center justify-center gap-1.5 select-none text-xs cursor-pointer"
-                    >
-                      <Instagram size={14} />
-                      <span>Vai al Post Correlato</span>
-                    </a>
+                    )}
                   </div>
                 </div>
-              )}
-            </div>
-          </div>
 
                 {/* Helpful Contact Helpdesk banner inside sidebar */}
                 <div className="bg-white border border-slate-100 rounded-3xl p-5 shadow-xs space-y-4">
