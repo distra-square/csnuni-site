@@ -81,7 +81,7 @@ export const GUIDES_DATA: Guide[] = [
     sections: [
       {
         title: 'Step 1: Registrazione e Accesso a Segrepass',
-        content: 'Il primo passo per entrare a far parte del mondo Federico II è accedere al portale Segrepass. Se sei un nuovo studente, puoi autenticarti in modo sicuro utilizzando SPID o Carta d\'Identità Elettronica (CIE). Una volta effettuato il primo accesso, ti verranno fornite le credenziali istituzionali per la tua area riservata.'
+        content: 'Il primo passo per entrare a far parte del mondo Federico II è accedere al portale Segrepass. Se sei un nuovo studente, consigliamo vivamente di registrarsi tramite il classico pulsante "Registrati" invece di utilizzare SPID o CIE, in quanto l\'integrazione di questi ultimi può risultare instabile per le prime registrazioni. Effettuando la registrazione tradizionale tramite il pulsante apposito, potrai creare subito le tue credenziali d\'accesso personali (Codice Fiscale e Password).'
       },
       {
         title: 'Step 2: Scelta del Corso e Caricamento Documenti',
@@ -89,11 +89,11 @@ export const GUIDES_DATA: Guide[] = [
       },
       {
         title: 'Step 3: Test di Ammissione (TOLC) o Verifica',
-        content: 'Ricorda che per molti corsi ad accesso programmato è richiesta l\'iscrizione alla selezione tramite il superamento del TOLC CISIA corrispondente (es. TOLC-I, TOLC-E, TOLC-SU). Per i corsi ad accesso libero, il test ha valore puramente orientativo (valutazione delle conoscenze iniziali) ma è comunque obbligatorio sostenerlo prima o subito dopo l\'immatricolazione.'
+        content: 'Ricorda che per molti corsi ad accesso programmato è richiesta l\'iscrizione alla selezione tramite il superamento del TOLC CISIA corrispondente (es. TOLC-I, TOLC-E, TOLC-SU). Per i corsi a numero programmato è fondamentale consultare con attenzione il bando associato sul sito di Ateneo all\'indirizzo: https://www.unina.it/it/didattica/offerta-formativa/corsi-numero-programmato. Per i corsi ad accesso libero, il test ha valore puramente orientativo (valutazione delle conoscenze iniziali) ma è comunque obbligatorio sostenerlo prima o subito dopo l\'immatricolazione.'
       },
       {
-        title: 'Step 4: Pagamento della Prima Rata',
-        content: 'Al termine della procedura di immatricolazione, il sistema genererà la tassa di iscrizione tramite la piattaforma PagoPA. Il pagamento può essere effettuato online con carta, home banking o fisicamente presso tabaccherie e sportelli abilitati. L\'immatricolazione si ritiene completata solo ad avvenuta ricezione del pagamento.'
+        title: 'Step 4: Generazione e Pagamento delle Tasse',
+        content: 'Al termine della procedura di immatricolazione, il sistema genererà la prima rata e la tassa regionale tramite la piattaforma PagoPA, calcolate sulla base dell\'attestazione ISEE-U presentata. Il pagamento può essere effettuato online con carta, home banking o fisicamente presso tabaccherie e sportelli abilitati. L\'immatricolazione si ritiene completata solo ad avvenuta ricezione del pagamento.'
       }
     ]
   },
