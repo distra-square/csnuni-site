@@ -28,7 +28,7 @@ export const GUIDES_DATA: Guide[] = [
     excerpt: 'È online il nuovo bando della Federico II per il rimborso delle spese di locazione sostenute dagli studenti fuorisede. Ecco i requisiti, le scadenze e come presentare la domanda.',
     officialUrl: 'https://www.unina.it/it/servizi-e-opportunita/opportunita-e-iniziative/locazioni-studenti-fuori-sede',
     officialUrlLabel: 'Bando Ufficiale su Unina.it',
-    instagramPostUrl: 'https://instagram.com/confed_napoli',
+    instagramPostUrl: 'https://www.instagram.com/p/DO_kIyiDb4J/',
     instagramPostCaption: '🏠 CONTRIBUTO AFFITTI FUORISEDE 2026/2027 🏠\n\nSei uno studente fuorisede iscritto alla Federico II con un contratto d’affitto registrato? È uscito il bando per richiedere il rimborso delle spese di locazione!\n\nNel post di oggi ti spieghiamo i requisiti e come fare domanda in pochi semplici passaggi. Non perdere questa opportunità!\n\n#unina #fuorisede #federicoii #affitti #dirittoallostudio #confed_napoli',
     sections: [
       {
