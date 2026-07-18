@@ -34,9 +34,16 @@ function saveLocalStorageGuides(guides: Guide[]) {
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(guides));
 }
 
+let lastFirebaseError: string | null = null;
+
+export function getFirebaseError(): string | null {
+  return lastFirebaseError;
+}
+
 export async function getGuides(): Promise<Guide[]> {
   if (db) {
     try {
+      lastFirebaseError = null;
       const q = query(collection(db, COLLECTION_NAME), orderBy('date', 'desc'));
       const querySnapshot = await getDocs(q);
       
@@ -54,8 +61,9 @@ export async function getGuides(): Promise<Guide[]> {
       
       // Sort guides (some might not have parsed timestamp but we can sort by date or title as secondary)
       return guides;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error fetching guides from Firestore:', error);
+      lastFirebaseError = error?.message || String(error);
       // Fallback to localStorage if firestore permissions fail or network is down
       return getLocalStorageGuides();
     }
@@ -67,11 +75,13 @@ export async function getGuides(): Promise<Guide[]> {
 export async function saveGuide(guide: Guide): Promise<void> {
   if (db) {
     try {
+      lastFirebaseError = null;
       const docRef = doc(db, COLLECTION_NAME, guide.id);
       await setDoc(docRef, guide);
       console.log(`Guide ${guide.id} saved to Firestore successfully.`);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error saving guide to Firestore:', error);
+      lastFirebaseError = error?.message || String(error);
       // Save locally as fallback
       const local = getLocalStorageGuides();
       const index = local.findIndex((g) => g.id === guide.id);
@@ -97,11 +107,13 @@ export async function saveGuide(guide: Guide): Promise<void> {
 export async function deleteGuide(id: string): Promise<void> {
   if (db) {
     try {
+      lastFirebaseError = null;
       const docRef = doc(db, COLLECTION_NAME, id);
       await deleteDoc(docRef);
       console.log(`Guide ${id} deleted from Firestore successfully.`);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error deleting guide from Firestore:', error);
+      lastFirebaseError = error?.message || String(error);
       // Delete locally as fallback
       const local = getLocalStorageGuides();
       const filtered = local.filter((g) => g.id !== id);
@@ -117,13 +129,15 @@ export async function deleteGuide(id: string): Promise<void> {
 export async function seedDefaultGuidesToCloud(): Promise<void> {
   if (!db) return;
   try {
+    lastFirebaseError = null;
     for (const guide of GUIDES_DATA) {
       const docRef = doc(db, COLLECTION_NAME, guide.id);
       await setDoc(docRef, guide);
     }
     console.log('Successfully seeded default guides to Firestore cloud.');
-  } catch (error) {
+  } catch (error: any) {
     console.error('Failed to seed default guides to cloud:', error);
+    lastFirebaseError = error?.message || String(error);
     throw error;
   }
 }
