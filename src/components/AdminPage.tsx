@@ -118,7 +118,19 @@ export default function AdminPage({ onBackToHome }: AdminPageProps) {
 
   const handleEditGuide = (guide: Guide) => {
     // Deep copy to prevent mutating list directly
-    setEditingGuide(JSON.parse(JSON.stringify(guide)));
+    const copy = JSON.parse(JSON.stringify(guide));
+    
+    // If optional fields are empty strings or not present, remove them so they are completely absent
+    if (!copy.officialUrl || typeof copy.officialUrl !== 'string' || copy.officialUrl.trim() === '') {
+      delete copy.officialUrl;
+      delete copy.officialUrlLabel;
+    }
+    if (!copy.instagramPostUrl || typeof copy.instagramPostUrl !== 'string' || copy.instagramPostUrl.trim() === '') {
+      delete copy.instagramPostUrl;
+      delete copy.instagramPostCaption;
+    }
+    
+    setEditingGuide(copy);
   };
 
   const handleDeleteGuide = async (id: string) => {
