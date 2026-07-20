@@ -3,16 +3,12 @@ import Hero from './components/Hero';
 import AreaGrid from './components/AreaGrid';
 import InstagramFeed from './components/InstagramFeed';
 import Footer from './components/Footer';
-import GuidesPage from './components/GuidesPage';
-import AdminPage from './components/AdminPage';
-import { useState, useEffect } from 'react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { Instagram, MessageCircle } from 'lucide-react';
 import studentsImage from './assets/images/regenerated_image_1778425878747.png';
 import orientationImage from './assets/images/regenerated_image_1778426150367.jpg';
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<'home' | 'guides' | 'admin'>('home');
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -20,39 +16,6 @@ export default function App() {
     restDelta: 0.001
   });
 
-  useEffect(() => {
-    const checkPath = () => {
-      const path = window.location.pathname;
-      if (path === '/amministrazione' || path === '/amministrazione/') {
-        setCurrentView('admin');
-      }
-    };
-    checkPath();
-    window.addEventListener('popstate', checkPath);
-    return () => window.removeEventListener('popstate', checkPath);
-  }, []);
-
-  const handleViewChange = (view: 'home' | 'guides' | 'admin') => {
-    setCurrentView(view);
-    if (view === 'admin') {
-      window.history.pushState({}, '', '/amministrazione');
-    } else if (view === 'guides') {
-      window.history.pushState({}, '', '/#guide');
-    } else {
-      window.history.pushState({}, '', '/');
-    }
-  };
-
-  if (currentView === 'admin') {
-    return (
-      <div className="relative min-h-screen selection:bg-csn-yellow selection:text-csn-blue overflow-x-hidden">
-        <main>
-          <AdminPage onBackToHome={() => handleViewChange('home')} />
-        </main>
-      </div>
-    );
-  }
-  
   return (
     <div className="relative min-h-screen selection:bg-csn-yellow selection:text-csn-blue overflow-x-hidden">
       {/* Scroll Progress Bar */}
@@ -61,12 +24,10 @@ export default function App() {
         style={{ scaleX }}
       />
 
-      <Navbar currentView={currentView} onViewChange={(view) => handleViewChange(view as any)} />
+      <Navbar />
       
       <main>
-        {currentView === 'home' ? (
-          <>
-            <Hero onViewChange={(view) => handleViewChange(view as any)} />
+        <Hero />
 
         {/* Quick Groups CTA */}
         <section className="py-8 px-4 max-w-7xl mx-auto">
@@ -181,15 +142,9 @@ export default function App() {
             </a>
           </div>
         </section>
-      </>
-    ) : (
-      <GuidesPage onBackToHome={() => handleViewChange('home')} />
-    )}
-  </main>
+      </main>
 
       <Footer />
-      <SpeedInsights />
     </div>
   );
 }
-
