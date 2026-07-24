@@ -39,7 +39,18 @@ export default function AdminPage({ onBackToHome }: AdminPageProps) {
   const [editingGuide, setEditingGuide] = useState<Partial<Guide> | null>(null);
   const [expandedSections, setExpandedSections] = useState<boolean>(true);
 
-  const CORRECT_PASSCODE = 'Confed_AmministrazionE_20_26';
+  // Hash SHA-256 precalcolato della password di default per evitare di esporla in chiaro nel bundle client
+  const DEFAULT_PASSCODE_HASH = 'cf510bf65b45c5313c53bce016925767b92087c9abe3d85c011ce1a1107916d3';
+
+  const sha256 = async (message: string): Promise<string> => {
+    if (!window.crypto || !window.crypto.subtle) {
+      return message; // fallback
+    }
+    const msgBuffer = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  };
 
   useEffect(() => {
     // Check if authenticated in current session
@@ -71,9 +82,23 @@ export default function AdminPage({ onBackToHome }: AdminPageProps) {
     }
   };
 
-  const handleLogin = (e: FormEvent) => {
+  const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
-    if (passcode === CORRECT_PASSCODE) {
+    const envPasscode = import.meta.env.VITE_ADMIN_PASSCODE;
+    
+    let isCorrect = false;
+    if (envPasscode && envPasscode.trim() !== '') {
+      isCorrect = (passcode.trim() === envPasscode.trim());
+    } else {
+      try {
+        const hashed = await sha256(passcode.trim());
+        isCorrect = (hashed === DEFAULT_PASSCODE_HASH);
+      } catch {
+        isCorrect = false;
+      }
+    }
+
+    if (isCorrect) {
       setIsAuthenticated(true);
       sessionStorage.setItem('confed_admin_authenticated', 'true');
       setAuthError('');
@@ -201,13 +226,13 @@ export default function AdminPage({ onBackToHome }: AdminPageProps) {
       await saveGuide(finalGuide);
       const err = getFirebaseError();
       if (err) {
-        showStatus('error', `Salvataggio Cloud fallito (${err}). Salvata temporaneamente nel browser.`);
+        showStatus('success', `Salvata localmente nel browser (Cloud non configurato o accesso negato).`);
         setFirebaseError(err);
       } else {
-        showStatus('success', 'Guida salvata correttamente!');
+        showStatus('success', 'Guida salvata correttamente nel Cloud!');
         setFirebaseError(null);
-        setEditingGuide(null);
       }
+      setEditingGuide(null);
       await loadGuidesData();
     } catch (e) {
       console.error(e);
