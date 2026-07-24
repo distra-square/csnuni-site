@@ -20,6 +20,95 @@ export interface Guide {
 
 export const GUIDES_DATA: Guide[] = [
   {
+    id: 'borse-di-studio-adisurc-2026-2027',
+    title: 'Borse di Studio ADISURC 2026/2027: Requisiti, Scadenze e Guida Completa',
+    category: 'Borse & Contributi',
+    date: '24 Luglio 2026',
+    readTime: '6 min',
+    excerpt: 'È stato pubblicato il nuovo bando per le Borse di Studio ADISURC della Regione Campania A.A. 2026/2027. Ecco la guida completa con scadenze, requisiti di reddito (ISEE/ISPE), tabella CFU di merito, punti bonus e le regole per l\'ulteriore semestre e il semestre aperto.',
+    officialUrl: 'https://www.adisurcampania.it/',
+    officialUrlLabel: 'Portale Ufficiale ADISURC Campania',
+    instagramPostUrl: 'https://www.instagram.com/p/DbLGaBfDd5t/',
+    instagramPostCaption: '🎓 BORSE DI STUDIO ADISURC 2026/2027 🎓\n\nSei uno studente universitario in Campania? È uscito il bando di concorso ADISURC per la borsa di studio erogata dalla Regione Campania!\n\nIn questo post trovi la sintesi completa con scadenze, requisiti ISEE/ISPE, tabella CFU di merito, punti bonus e regole per l\'ulteriore semestre e semestre aperto.\n\n#adisurc #unina #borsadistudio #dirittoallostudio #confed_napoli #campania',
+    sections: [
+      {
+        title: 'Cos\'è la Borsa di Studio ADISURC?',
+        content: 'Se sei uno studente della Regione Campania (pendolare, in sede o fuorisede) puoi avere accesso a numerosi benefici. In particolare, se possiedi i requisiti previsti dal bando di concorso ADISURC puoi risultare beneficiario di una BORSA DI STUDIO interamente finanziata dalla Regione e adatta alle tue esigenze di studente universitario.'
+      },
+      {
+        title: 'Come e Dove Presentare la Domanda',
+        content: 'La domanda va presentata esclusivamente online su adisurcampania.it accedendo all\'Area Riservata Studenti con la propria identità digitale SPID o CIE ID e cliccando su "Modulo di richiesta benefici 2026/2027" (Domanda online borsa di studio e benefici correlati 2026/2027).',
+        bullets: [
+          'TERMINE PRESENTAZIONE DOMANDA: Entro le ORE 12:00 DEL 10 SETTEMBRE 2026.',
+          'Presentazione per non ancora iscritti: È possibile presentare domanda anche se non si è ancora iscritti all\'A.A. 2026/27. L\'idoneità sarà condizionata dall\'iscrizione entro e non oltre il 31 MARZO 2027 (verificata con le graduatorie assestate).',
+          'Attenzione Posto Alloggio: Se concorri per un posto alloggio, devi perfezionare l\'iscrizione universitaria ENTRO IL 20 SETTEMBRE 2026.'
+        ]
+      },
+      {
+        title: 'Di cosa ho bisogno per fare domanda?',
+        content: 'Prima di avviare la compilazione della domanda online assicurati di avere a disposizione:',
+        bullets: [
+          'Certificazione ISEEU 2026: sottoscritta, a pena di esclusione, entro la scadenza del bando e disponibile negli archivi INPS.',
+          'Conto bancario o carta con IBAN: intestato o cointestato allo studente. L\'IBAN andrà inserito nella propria area personale ADISURC cliccando su "Modifica Codice IBAN" ENTRO E NON OLTRE IL 31 DICEMBRE 2026, pena la rinuncia del beneficio.',
+          'Indirizzo PEC: da inserire in fase di domanda online (Confederazione degli Studenti consiglia SpidMail, gratuita in ricezione). N.B. NON è possibile utilizzare la PEC istituzionale Unina.'
+        ]
+      },
+      {
+        title: '1. Requisito di Reddito (ISEE e ISPE)',
+        content: 'Per risultare idonei al concorso bisogna soddisfare contemporaneamente due tipologie di requisiti. Il primo è il requisito economico:',
+        bullets: [
+          'ISEE (Indicatore Situazione Economica Equivalente): ≤ €25.500,00',
+          'ISPE (Indicatore Situazione Patrimoniale Equivalente): ≤ €54.000,00',
+          'Attestazione ISEE applicabile alle prestazioni per il diritto allo studio universitario (ISEE Università) rilasciata obbligatoriamente nell\'anno 2026.',
+          '⚠️ IMPORTANTE (Dichiarazione Borse di Studio 2024): Nel caso siano stati percepiti contributi di borse di studio nell\'anno solare 2024 (dal 01/01/2024 al 31/12/2024), tali importi andranno dichiarati nel quadro FC4 della DSU tra i redditi esenti da imposte e inseriti in fase di compilazione della domanda ADISURC.'
+        ]
+      },
+      {
+        title: '2. Requisito di Merito (Tabella CFU)',
+        content: 'Dovrai conseguire (in caso di iscrizione a un primo anno) o aver conseguito (in caso di iscrizione ad anni successivi al primo) un minimo di Crediti Formativi Universitari (CFU) in base all\'anno di iscrizione 2026/27:',
+        bullets: [
+          '1° ANNO (Triennali, Magistrali C.U., Magistrali Biennali): 20 CFU. I candidati al 1° anno devono soddisfare il requisito A POSTERIORI: entro il 10/08 successivo per il 100% della borsa, oppure entro il 30/11 successivo per il 50%.',
+          '2° ANNO: 25 CFU (Triennali e Magistrali C.U.) | 30 CFU (Magistrali Biennali).',
+          '3° ANNO: 80 CFU per tutti i corsi di studio.',
+          '4° ANNO: 135 CFU (Triennali Ulteriore Semestre | Magistrali C.U.).',
+          '5° ANNO (Magistrali C.U.): 190 CFU.',
+          '6° ANNO: 245 CFU (Ulteriore semestre LMCU 5 anni / LMCU 6 anni).',
+          '7° ANNO: 300 CFU (Ulteriore semestre LMCU 6 anni).',
+          '📌 REGOLA ANNI SUCCESSIVI AL PRIMO: I candidati iscritti ad anni successivi al primo devono soddisfare il requisito di merito A PRIORI entro il 10/08 antecedente la scadenza del bando.'
+        ]
+      },
+      {
+        title: 'Punti Bonus per chi non raggiunge i CFU',
+        content: 'Gli studenti iscritti ad anni successivi al primo che al 10/08/2026 non possiedono i CFU minimi di merito possono beneficiare dei punti bonus:',
+        bullets: [
+          '5 Punti Bonus: se utilizzati per la prima volta da iscritti a un secondo anno (il residuo sarà utilizzabile per i concorsi degli anni successivi).',
+          '12 Punti Bonus: se utilizzati per la prima volta da iscritti a un terzo anno.',
+          '15 Punti Bonus: se utilizzati per la prima volta da iscritti ad anni successivi al terzo.',
+          'Corsi Magistrali Biennali: possono utilizzare il bonus residuo maturato e non fruito nel corso della laurea triennale.',
+          '⚠️ I punti bonus NON sono assegnabili ai candidati iscritti al primo anno di corso.'
+        ]
+      },
+      {
+        title: 'Ulteriore Semestre (Primo anno fuori corso)',
+        content: 'Con l\'espressione "ulteriore semestre" ci si riferisce ai candidati iscritti per l\'A.A. 2026/27 al primo anno fuori corso (7° semestre triennale, 5° semestre magistrale biennale, 11° o 13° semestre magistrale a ciclo unico). Gli studenti in ulteriore semestre beneficiano della borsa di studio ridotta del 50%.',
+        bullets: [
+          'Laureandi in corso 2025/26: Agli studenti in procinto di laurearsi sarà riconosciuta l\'idoneità come ulteriore semestre 2026/27 (anche se laureati nel 2025/26) se la laurea avviene nella sessione straordinaria A.A. 2025/26 e risultano iscritti all\'A.A. 2026/27 ad ulteriore semestre. Concorrono per il 50% della borsa.',
+          'Successiva iscrizione a Laurea Magistrale: In caso di successiva iscrizione nel 2026/27 al 1° anno di magistrale, l\'eventuale inserimento nella graduatoria dei primi anni (PA) avviene d\'ufficio dopo verfica in sede di assestamento graduatorie, con adeguamento dell\'importo.'
+        ]
+      },
+      {
+        title: 'Semestre Aperto / Semestre Filtro',
+        content: 'Gli studenti contemporaneamente iscritti al semestre aperto (o semestre filtro) e ad uno dei corsi affini (art. 2.5 del bando) concorrono alle seguenti condizioni:',
+        bullets: [
+          'Possono presentare domanda entro il 31 MARZO 2027 (in deroga alla scadenza del 10 settembre 2026).',
+          'Sono sospesi in graduatoria fino al perfezionamento dell\'immatricolazione all\'A.A. 2026/27.',
+          'Ottengono lo status di studente fuori sede se la permanenza nel posto alloggio a titolo oneroso ha una durata di almeno 3 mesi nel periodo 01/10/2026 - 30/09/2027.',
+          'Sono esclusi dal concorso se, concluso il semestre filtro, si immatricolano per il secondo semestre presso un ateneo al di fuori della Regione Campania.'
+        ]
+      }
+    ]
+  },
+  {
     id: 'contributo-affitti-2026',
     title: 'Bando Contributo Affitti Fuorisede: Come richiedere il rimborso',
     category: 'Borse & Contributi',
@@ -107,7 +196,6 @@ export const GUIDES_DATA: Guide[] = [
     officialUrl: 'https://www.unina.it/it/servizi-e-opportunita/opportunita-e-iniziative/locazioni-studenti-fuori-sede',
     officialUrlLabel: 'Bando Ufficiale su Unina.it',
     instagramPostUrl: 'https://www.instagram.com/p/DaVqT2gow_X/',
-
     sections: [
       {
         title: 'Cos\'è l\'ISEE Università e perché serve',
