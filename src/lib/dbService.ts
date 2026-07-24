@@ -18,7 +18,18 @@ function getLocalStorageGuides(): Guide[] {
   const data = localStorage.getItem(LOCAL_STORAGE_KEY);
   if (data) {
     try {
-      return JSON.parse(data);
+      const parsed: Guide[] = JSON.parse(data);
+      let updated = false;
+      for (const defaultGuide of GUIDES_DATA) {
+        if (!parsed.some(g => g.id === defaultGuide.id)) {
+          parsed.unshift(defaultGuide);
+          updated = true;
+        }
+      }
+      if (updated) {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(parsed));
+      }
+      return parsed;
     } catch (e) {
       console.error('Error parsing local storage guides:', e);
     }
@@ -109,7 +120,19 @@ export async function getGuides(): Promise<Guide[]> {
         guides.push(docSnap.data() as Guide);
       });
       
-      // Sort guides (some might not have parsed timestamp but we can sort by date or title as secondary)
+      // Check if any default GUIDES_DATA item is missing in Firestore and seed it
+      for (const defaultGuide of GUIDES_DATA) {
+        if (!guides.some(g => g.id === defaultGuide.id)) {
+          try {
+            const sanitized = prepareGuideForFirestore(defaultGuide);
+            await setDoc(doc(db, COLLECTION_NAME, sanitized.id), sanitized);
+            guides.unshift(sanitized);
+          } catch (err) {
+            console.warn(`Failed to seed missing default guide ${defaultGuide.id} to Firestore:`, err);
+          }
+        }
+      }
+      
       return guides;
     } catch (error: any) {
       console.error('Error fetching guides from Firestore:', error);
