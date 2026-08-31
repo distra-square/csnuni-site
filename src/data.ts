@@ -374,7 +374,7 @@ export const UNIVERSITY_AREAS: UniversityArea[] = [
         instagram: 'https://instagram.com/asmed_unina', 
         logo: '/ASMED.png',
         customLinks: [
-          { label: 'Semestre Filtro', url: 'https://chat.whatsapp.com/B6EsXxCMyyEJJhyvJUWQ21', type: 'whatsapp' }
+          { label: 'Semestre Filtro - GRUPPO N.2', url: 'https://chat.whatsapp.com/GnMLrBxaDck89d0o5ZaqTi', type: 'whatsapp' }
         ]
       },
       { 
