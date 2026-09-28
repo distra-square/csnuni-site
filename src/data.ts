@@ -653,7 +653,7 @@ customLinks: [
       'Storia'
     ],
     associations: [
-      { id: 'csn-umanistici', name: 'Confed StudiUmanistici', description: 'Associazione di riferimento per Studi Umanistici.', link: 'https://www.instagram.com/confedstudiumanistici/', instagram: 'https://instagram.com/confed_napoli', logo: '/studium.jpg', whatsapp: 'https://chat.whatsapp.com/Kk3mmxNAzts7KyopTO2GTd' }
+      { id: 'csn-umanistici', name: 'Confed StudiUmanistici', description: 'Associazione di riferimento per Studi Umanistici.', link: 'https://www.instagram.com/confedstudiumanistici/', instagram: 'https://www.instagram.com/confedstudiumanistici/', logo: '/studium.jpg', whatsapp: 'https://chat.whatsapp.com/Kk3mmxNAzts7KyopTO2GTd' }
     ]
   }
 ];
