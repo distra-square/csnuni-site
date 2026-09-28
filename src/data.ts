@@ -614,7 +614,7 @@ customLinks: [
       'Sociologia Digitale e Analisi del Web'
     ],
     associations: [
-      { id: 'csn-sociali', name: 'Confederazione Napoli', description: 'Associazione di riferimento per Scienze Sociali.', link: 'https://instagram.com/confed_napoli', instagram: 'https://instagram.com/confed_napoli', logo: '/logo.png' }
+      { id: 'csn-sociali', name: 'Confederazione Napoli', description: 'Associazione di riferimento per Scienze Sociali.', link: 'https://www.instagram.com/confedstudiumanistici/', instagram: 'https://instagram.com/confed_napoli', logo: '/logo.png', whatsapp: 'https://chat.whatsapp.com/Kk3mmxNAzts7KyopTO2GTd' }
     ]
   },
   {
